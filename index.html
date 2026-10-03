@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>3.10 The Industrializing North · One Day in Lowell</title>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#4f6f91"></rect><text x="50" y="62" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="30" fill="#f2ede3">3.10</text></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&amp;family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&amp;display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>html, body { margin: 0; height: 100%; overflow: hidden; background: #f2ede3; } a { color: #22262e; } a:hover { color: #4f6f91; } button { font: inherit; } input[type=range] { accent-color: #22262e; } @keyframes lwDim { from { opacity: 0; } to { opacity: 1; } } @keyframes lwIn { from { opacity: 0; transform: translateY(14px) scale(0.98); } to { opacity: 1; transform: none; } }</style>
+</helmet>
+
+<div style="position: relative; width: 100%; height: 100vh; overflow: hidden; background: #f2ede3; color: #22262e; font-family: 'Bricolage Grotesque', sans-serif;">
+
+  <x-import component-from-global-scope="lowell-scene" from="./lowell-scene.js" style="position: absolute; inset: 0;" hint-size="100%,100%"></x-import>
+
+  <div style="position: absolute; top: 16px; left: 16px; display: flex; flex-direction: column; gap: 8px; width: min(400px, calc(100% - 32px)); pointer-events: none;">
+    <div style="pointer-events: auto; background: #22262e; color: #f2ede3; border-radius: 4px; padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+      <div style="background: #c9a54e; color: #22262e; border-radius: 3px; padding: 3px 9px; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 13px;">3.10</div>
+      <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+        <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 16px; line-height: 1.15;">One Day in Lowell</div>
+        <div style="font-weight: 600; font-size: 14px; color: #c9c3b6;">The Industrializing North · Lowell, Massachusetts, 1840s</div>
+      </div>
+    </div>
+    <sc-if value="{{ noPanel }}" hint-placeholder-val="{{ true }}">
+      <div style="pointer-events: auto; background: #fbf9f4; border: 2px solid #22262e; border-left: 8px solid #c9a54e; border-radius: 4px; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px;">
+        <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.06em; color: #5a5f6b;">GUIDING QUESTION</div>
+        <div style="font-weight: 800; font-size: 17px; line-height: 1.25;">Who benefited from northern growth, and who paid the price?</div>
+      </div>
+    </sc-if>
+    <div style="pointer-events: auto; align-self: flex-start; background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; padding: 8px 12px; display: flex; align-items: center; gap: 10px; box-shadow: 3px 3px 0 #22262e;">
+      <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.06em;">{{ doneCount }} / 7</div>
+      <div style="display: flex; gap: 5px;">
+        <sc-for list="{{ track }}" as="t" hint-placeholder-count="7">
+          <button onClick="{{ t.pick }}" title="{{ t.title }}" style="width: 28px; height: 28px; padding: 0; border-radius: 3px; border: 2px solid {{ t.border }}; background: {{ t.bg }}; color: {{ t.fg }}; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; cursor: {{ t.cursor }};">{{ t.mark }}</button>
+        </sc-for>
+      </div>
+      <sc-if value="{{ anyDone }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ reset }}" style="background: none; border: none; padding: 0; font-weight: 700; font-size: 12px; color: #5a5f6b; text-decoration: underline; cursor: pointer;">Restart</button>
+      </sc-if>
+    </div>
+  </div>
+
+  <sc-if value="{{ noPanel }}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; left: 16px; bottom: 16px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; max-width: calc(100% - 32px); pointer-events: none;">
+      <sc-if value="{{ showNext }}" hint-placeholder-val="{{ true }}">
+        <div style="pointer-events: auto; background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; box-shadow: 4px 4px 0 #22262e; padding: 12px 14px; display: flex; align-items: center; gap: 14px;">
+          <div style="width: 40px; height: 40px; border-radius: 3px; background: {{ next.color }}; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 18px;">{{ next.num }}</div>
+          <div style="display: flex; flex-direction: column; gap: 1px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.06em; color: #5a5f6b;">{{ next.kicker }}</div>
+            <div style="font-weight: 800; font-size: 17px;">{{ next.place }}</div>
+          </div>
+          <button onClick="{{ goNext }}" style="background: #22262e; color: #f2ede3; border: none; border-radius: 3px; padding: 9px 16px; font-weight: 800; font-size: 15px; cursor: pointer;">Go →</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ allDone }}" hint-placeholder-val="{{ false }}">
+        <div style="pointer-events: auto; background: #22262e; color: #f2ede3; border-radius: 4px; box-shadow: 4px 4px 0 #c9a54e; padding: 14px 16px 14px 18px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.06em; color: #c9a54e;">ALL SEVEN STOPS COMPLETE</div>
+            <div style="font-weight: 700; font-size: 16px;">Use your Who Benefited? clues to answer the guiding question.</div>
+          </div>
+          <button onClick="{{ openClosing }}" style="background: #c9a54e; color: #22262e; border: none; border-radius: 3px; padding: 9px 16px; font-weight: 800; font-size: 15px; cursor: pointer;">Closing Task →</button>
+        </div>
+      </sc-if>
+      <div style="pointer-events: auto; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; background: rgba(251,249,244,0.94); border-radius: 3px; padding: 6px 8px; font-weight: 600; font-size: 13px; color: #4a4d55;">
+        <span>Click a numbered stop · Drag to move · Scroll to zoom</span>
+        <button onClick="{{ showHow }}" style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 3px; padding: 3px 10px; font-weight: 800; font-size: 13px; color: #22262e; cursor: pointer;">How this works</button>
+        <button onClick="{{ overview }}" style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 3px; padding: 3px 10px; font-weight: 800; font-size: 13px; color: #22262e; cursor: pointer;">Overview</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showWelcome }}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; top: 16px; left: 16px; bottom: 16px; width: min(480px, calc(100% - 32px)); overflow-y: auto; background: #f2ede3; border: 2px solid #22262e; border-radius: 4px; box-shadow: 6px 6px 0 #22262e; display: flex; flex-direction: column; animation: lwIn 0.6s ease both;">
+      <div style="background: #22262e; color: #f2ede3; padding: 18px 20px; display: flex; align-items: center; gap: 14px; flex-shrink: 0;">
+        <div style="background: #c9a54e; color: #22262e; border-radius: 3px; padding: 4px 10px; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 15px;">3.10</div>
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 24px; line-height: 1.05;">One Day in Lowell</div>
+          <div style="font-weight: 600; font-size: 15px; color: #c9c3b6;">The Industrializing North</div>
+        </div>
+      </div>
+      <div style="padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 16px; font-size: 17px; line-height: 1.45;">
+        <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 40px; line-height: 1; flex-shrink: 0;">{{ w.year }}</div>
+            <div style="font-weight: 700; font-size: 16px; line-height: 1.35; text-wrap: pretty;">{{ w.cap }}</div>
+          </div>
+          <div style="height: 8px; background: #e2dbcc; border-radius: 1px; overflow: hidden;"><div style="width: {{ w.bar }}; height: 100%; background: #c9a54e;"></div></div>
+        </div>
+        <div style="text-wrap: pretty;">In 1821, this spot on the Merrimack River in Massachusetts was a quiet farming village called East Chelmsford. About 20 years later, it was one of the biggest factory cities in America. Watch it happen.</div>
+        <div style="background: #22262e; color: #f2ede3; border-radius: 4px; padding: 12px 16px; display: flex; flex-direction: column; gap: 3px;">
+          <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #c9a54e;">GUIDING QUESTION</div>
+          <div style="font-weight: 800; font-size: 18px; line-height: 1.3;">Who benefited from northern growth, and who paid the price?</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 0.06em; color: #5a5f6b;">WHAT YOU’LL DO</div>
+          <div style="display: flex; gap: 12px;"><div style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 3px; background: #6b8fb3; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 13px;">1</div><div>Visit <strong>7 stops</strong> around Lowell, in order. Finishing one stop unlocks the next.</div></div>
+          <div style="display: flex; gap: 12px;"><div style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 3px; background: #c2715a; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 13px;">2</div><div>At each stop, read the short intro. Then study real voices and documents from the time.</div></div>
+          <div style="display: flex; gap: 12px;"><div style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 3px; background: #5f8f96; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 13px;">3</div><div>Answer the questions on your <strong>handout</strong> as you go. Click any underlined word to see what it means.</div></div>
+          <div style="display: flex; gap: 12px;"><div style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 3px; background: #c9a54e; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 13px;">4</div><div>At every stop, write a <strong>Who Benefited?</strong> clue. At the end, use your clues to answer the guiding question.</div></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-top: 2px;">
+          <sc-if value="{{ wNotDone }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ skipIntro }}" style="background: none; border: none; padding: 0; font-weight: 700; font-size: 14px; color: #5a5f6b; text-decoration: underline; cursor: pointer;">{{ w.skip }}</button>
+          </sc-if>
+          <sc-if value="{{ wDone }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ replayGrow }}" style="background: none; border: none; padding: 0; font-weight: 700; font-size: 14px; color: #5a5f6b; text-decoration: underline; cursor: pointer;">Watch it again</button>
+          </sc-if>
+          <sc-if value="{{ wPre }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ watchGrow }}" style="background: #c9a54e; color: #22262e; border: 2px solid #22262e; border-radius: 3px; padding: 11px 20px; font-weight: 800; font-size: 16px; cursor: pointer; box-shadow: 3px 3px 0 #22262e;">Watch Lowell grow →</button>
+          </sc-if>
+          <sc-if value="{{ wGrowing }}" hint-placeholder-val="{{ false }}">
+            <div style="background: #e2dbcc; color: #5a5f6b; border: 2px solid #a9a497; border-radius: 3px; padding: 11px 20px; font-weight: 800; font-size: 16px;">Building Lowell…</div>
+          </sc-if>
+          <sc-if value="{{ wDone }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ startJourney }}" style="background: #22262e; color: #f2ede3; border: 2px solid #22262e; border-radius: 3px; padding: 11px 20px; font-weight: 800; font-size: 16px; cursor: pointer; box-shadow: 3px 3px 0 #c9a54e;">Start the journey →</button>
+          </sc-if>
+        </div>
+        <sc-if value="{{ canReset }}" hint-placeholder-val="{{ false }}">
+          <div style="border-top: 1px solid #d3cdc0; padding-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+            <sc-if value="{{ askReset }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size: 14px; font-weight: 700; color: #a1543f;">This erases your worker, choices, badges and progress.</div>
+              <div style="display: flex; gap: 8px;">
+                <button onClick="{{ cancelReset }}" style="background: #fbf9f4; color: #22262e; border: 2px solid #22262e; border-radius: 3px; padding: 6px 12px; font-weight: 800; font-size: 14px; cursor: pointer;">Cancel</button>
+                <button onClick="{{ doReset }}" style="background: #a1543f; color: #fbf9f4; border: 2px solid #22262e; border-radius: 3px; padding: 6px 12px; font-weight: 800; font-size: 14px; cursor: pointer;">Yes, reset</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ notAskReset }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size: 14px; font-weight: 600; color: #5a5f6b;">{{ resetNote }}</div>
+              <button onClick="{{ startReset }}" style="background: #fbf9f4; color: #a1543f; border: 2px solid #a1543f; border-radius: 3px; padding: 6px 12px; font-weight: 800; font-size: 14px; cursor: pointer;">Reset progress</button>
+            </sc-if>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isStop }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; top: 16px; right: 16px; bottom: 16px; width: min(560px, calc(100% - 32px)); overflow-y: auto; background: #f2ede3; border: 2px solid #22262e; border-radius: 4px; box-shadow: 6px 6px 0 #22262e; display: flex; flex-direction: column;">
+      <div style="position: sticky; top: 0; z-index: 2; background: #22262e; color: #f2ede3; display: flex; flex-direction: column;">
+        <div style="height: 6px; background: {{ s.color }};"></div>
+        <div style="padding: 12px 16px 14px 18px; display: flex; gap: 12px; align-items: flex-start;">
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.06em; color: #c9c3b6;">STOP {{ s.num }} OF 7 · {{ s.placeCaps }}</div>
+            <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 22px; line-height: 1.1;">{{ s.station }}</div>
+            <div style="font-weight: 600; font-size: 16px; color: #e3ddd0;">{{ s.q }}</div>
+            <button onClick="{{ rereadIntro }}" style="align-self: flex-start; margin-top: 4px; background: none; border: none; padding: 0; font-weight: 700; font-size: 13px; color: #c9c3b6; text-decoration: underline; cursor: pointer;">Reread the station intro</button>
+          </div>
+          <button onClick="{{ closePanel }}" aria-label="Close" style="flex-shrink: 0; width: 32px; height: 32px; padding: 0; background: none; border: 2px solid #f2ede3; border-radius: 3px; font-weight: 800; font-size: 18px; line-height: 1; color: #f2ede3; cursor: pointer;">×</button>
+        </div>
+      </div>
+
+      <div style="padding: 16px; display: flex; flex-direction: column; gap: 16px; font-size: 17px; line-height: 1.45;">
+        <sc-if value="{{ chosen.has }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; gap: 12px; align-items: center; background: #fbf9f4; border: 2px dashed #22262e; border-radius: 4px; padding: 10px 14px;">
+            <div style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: {{ wkV.color }}; border: 2px solid #22262e; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 14px; color: #22262e;">{{ wkV.initial }}</div>
+            <div style="display: flex; flex-direction: column; gap: 1px; min-width: 0;"><div style="font-weight: 800; font-size: 12px; color: #5a5f6b; letter-spacing: 0.04em;">{{ wkV.name }} CHOSE</div><div style="font-weight: 700; font-size: 15px;">{{ chosen.t }}</div></div>
+          </div>
+        </sc-if>
+
+        <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 3px; padding-bottom: 12px; border-bottom: 1px solid #d8d0bf;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 0.08em; color: #5a5f6b;">WHAT YOU’RE LOOKING AT</div>
+            <div style="font-size: 15px; font-weight: 600; color: #3d414a; text-wrap: pretty;">{{ ctx.sp }}</div>
+          </div>
+          <div style="display: flex; gap: 14px; align-items: center;">
+            <sc-if value="{{ pt0 }}" hint-placeholder-val="{{ false }}"><div style="flex-shrink: 0; width: 92px; height: 92px; border: 2px solid #22262e; border-radius: 4px; overflow: hidden; background: #e9e3d6;"><img src="./assets/portraits/dickens.jpg" alt="Illustrated portrait of Charles Dickens" style="display: block; width: 100%; height: 100%; object-fit: cover;" /></div></sc-if>
+            <sc-if value="{{ pt1 }}" hint-placeholder-val="{{ false }}"><div style="flex-shrink: 0; width: 92px; height: 92px; border: 2px solid #22262e; border-radius: 4px; overflow: hidden; background: #e9e3d6;"><img src="./assets/portraits/tocqueville.jpg" alt="Illustrated portrait of Alexis de Tocqueville" style="display: block; width: 100%; height: 100%; object-fit: cover;" /></div></sc-if>
+            <sc-if value="{{ pt2 }}" hint-placeholder-val="{{ false }}"><div style="flex-shrink: 0; width: 92px; height: 92px; border: 2px solid #22262e; border-radius: 4px; overflow: hidden; background: #e9e3d6;"><img src="./assets/portraits/robinson.jpg" alt="Illustrated portrait of Harriet Hanson Robinson" style="display: block; width: 100%; height: 100%; object-fit: cover;" /></div></sc-if>
+            <sc-if value="{{ pt3 }}" hint-placeholder-val="{{ false }}"><div style="flex-shrink: 0; width: 92px; height: 92px; border: 2px solid #22262e; border-radius: 4px; overflow: hidden; background: #e9e3d6;"><img src="./assets/portraits/larcom.jpg" alt="Illustrated portrait of Lucy Larcom" style="display: block; width: 100%; height: 100%; object-fit: cover;" /></div></sc-if>
+            <sc-if value="{{ pt4 }}" hint-placeholder-val="{{ false }}"><div style="flex-shrink: 0; width: 92px; height: 92px; border: 2px solid #22262e; border-radius: 4px; overflow: hidden; background: #e9e3d6;"><img src="./assets/portraits/bagley.jpg" alt="Illustrated portrait of Sarah Bagley" style="display: block; width: 100%; height: 100%; object-fit: cover;" /></div></sc-if>
+            <sc-if value="{{ pt6 }}" hint-placeholder-val="{{ false }}"><div style="flex-shrink: 0; width: 92px; height: 92px; border: 2px solid #22262e; border-radius: 4px; overflow: hidden; background: #e9e3d6;"><img src="./assets/portraits/sumner.jpg" alt="Illustrated portrait of Charles Sumner" style="display: block; width: 100%; height: 100%; object-fit: cover;" /></div></sc-if>
+            <sc-if value="{{ sp.missing }}" hint-placeholder-val="{{ false }}">
+              <div style="flex-shrink: 0; width: 92px; height: 92px; border: 2px dashed #8a877f; border-radius: 4px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; font-weight: 700; color: #6f6c65; padding: 6px; box-sizing: border-box;">No portrait survives</div>
+            </sc-if>
+            <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+              <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.06em; color: {{ sp.kickerColor }};">{{ sp.kicker }}</div>
+              <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 20px; line-height: 1.1;">{{ sp.name }}</div>
+              <div style="font-weight: 600; font-size: 15px; color: #5a5f6b;">{{ sp.years }} · {{ sp.role }}</div>
+            </div>
+          </div>
+          <div style="font-size: 16px; font-weight: 500; text-wrap: pretty;"><sc-for list="{{ spS.intro }}" as="g" hint-placeholder-count="1"><span onClick="{{ g.pick }}" style="font-weight: {{ g.fw }}; border-bottom: {{ g.bb }}; background: {{ g.bg }}; cursor: {{ g.cur }};">{{ g.t }}</span></sc-for></div>
+          <sc-if value="{{ sp.hasQuote }}" hint-placeholder-val="{{ true }}">
+            <div style="border-left: 5px solid {{ s.color }}; padding: 2px 0 2px 16px; font-size: 21px; font-weight: 700; line-height: 1.38; text-wrap: pretty;">“<sc-for list="{{ spS.quote }}" as="g" hint-placeholder-count="1"><span onClick="{{ g.pick }}" style="font-weight: {{ g.fw }}; border-bottom: {{ g.bb }}; background: {{ g.bg }}; cursor: {{ g.cur }};">{{ g.t }}</span></sc-for>”</div>
+            <div style="font-size: 13px; color: #5a5f6b;">{{ sp.src }}</div>
+          </sc-if>
+        </div>
+
+        <div style="display: flex; gap: 12px; align-items: center; padding: 0 6px;">
+          <div style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 3px; background: {{ s.color }}; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px;">↓</div>
+          <div style="font-size: 15px; font-weight: 700; color: #3d414a; text-wrap: pretty;">{{ ctx.ta }}</div>
+        </div>
+
+        <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; overflow: hidden;">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-bottom: 2px solid #22262e;">
+            <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 3px; background: #22262e; color: #f2ede3; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 14px;">A</div>
+            <div style="font-weight: 800; font-size: 18px; flex: 1;">{{ s.aTitle }}</div>
+            <div style="background: {{ s.color }}; border-radius: 2px; padding: 3px 8px; font-weight: 800; font-size: 11px; letter-spacing: 0.06em;">INTERACTIVE</div>
+          </div>
+          <div style="padding: 10px 16px; background: #f2ede3; border-bottom: 1px solid #d8d0bf; display: flex; flex-direction: column; gap: 3px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 0.08em; color: #5a5f6b;">WHAT YOU’RE LOOKING AT</div>
+            <div style="font-size: 15px; font-weight: 600; color: #3d414a; text-wrap: pretty;">{{ ctx.a }}</div>
+          </div>
+          <div style="padding: 16px; display: flex; flex-direction: column; gap: 14px;">
+
+            <sc-if value="{{ isA1 }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size: 15px; font-weight: 600; color: #5a5f6b;">Click a year.</div>
+              <div style="height: 190px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: end; border-bottom: 3px solid #22262e;">
+                <sc-for list="{{ a1Bars }}" as="b" hint-placeholder-count="4">
+                  <button onClick="{{ b.pick }}" aria-label="{{ b.year }}" style="height: {{ b.h }}; min-height: 6px; background: {{ b.bg }}; border: 2px solid #22262e; border-bottom: none; border-radius: 2px 2px 0 0; padding: 0; cursor: pointer; transition: background 0.2s;"></button>
+                </sc-for>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; text-align: center; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 14px; margin-top: -6px;">
+                <sc-for list="{{ a1Bars }}" as="b" hint-placeholder-count="4"><div>{{ b.year }}</div></sc-for>
+              </div>
+              <div style="background: #e9e3d6; border-radius: 3px; padding: 12px 16px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+                <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 26px; white-space: nowrap;">{{ a1Sel.val }}</div>
+                <div style="font-weight: 600; font-size: 15px; flex: 1; min-width: 180px;">{{ a1Sel.note }}</div>
+              </div>
+              <div style="font-size: 13px; color: #5a5f6b;">Source: U.S. Census, 1830–1850.</div>
+            </sc-if>
+
+            <sc-if value="{{ isA2 }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+                <button onClick="{{ toggleGate }}" style="background: {{ a2.btnBg }}; color: {{ a2.btnFg }}; border: 2px solid #22262e; border-radius: 3px; padding: 9px 16px; font-weight: 800; font-size: 15px; cursor: pointer;">{{ a2.btn }}</button>
+                <div style="font-weight: 800; font-size: 14px; letter-spacing: 0.04em; color: {{ a2.statusC }};">{{ a2.status }}</div>
+              </div>
+              <div style="background: #e9e3d6; border-radius: 3px; padding: 12px 16px; font-weight: 600; font-size: 16px;">{{ a2.text }}</div>
+              <div style="font-weight: 800; font-size: 16px; margin-top: 4px;">Then compare: making a pair of shoes</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; border: 2px solid #22262e; border-radius: 3px; overflow: hidden;">
+                <sc-for list="{{ a2Modes }}" as="m" hint-placeholder-count="2">
+                  <button onClick="{{ m.pick }}" style="background: {{ m.bg }}; color: {{ m.fg }}; border: none; padding: 10px 8px; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 14px; cursor: pointer;">{{ m.label }}</button>
+                </sc-for>
+              </div>
+              <div style="display: flex; flex-direction: column;">
+                <sc-for list="{{ a2Rows }}" as="r" hint-placeholder-count="5">
+                  <div style="display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 12px; padding: 8px 0; border-bottom: 1px solid #d8d0bf; font-size: 16px;">
+                    <div style="font-weight: 800; color: #5a5f6b;">{{ r.k }}</div>
+                    <div style="font-weight: 600;">{{ r.v }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ isA3 }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size: 15px; font-weight: 600; color: #5a5f6b;">Click each bell. Watch the light and the windows change in the scene.</div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(66px, 1fr)); gap: 6px;">
+                <sc-for list="{{ a3Bells }}" as="b" hint-placeholder-count="7">
+                  <button onClick="{{ b.pick }}" style="background: {{ b.bg }}; color: {{ b.fg }}; border: 2px solid #22262e; border-radius: 3px; padding: 7px 2px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                    <span style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 13px; white-space: nowrap;">{{ b.time }}</span>
+                    <span style="font-size: 12px; font-weight: 700;">{{ b.short }}</span>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="background: #e9e3d6; border-radius: 3px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; min-height: 150px;">
+                <div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap;">
+                  <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 19px;">{{ a3.title }}</div>
+                  <div style="font-weight: 800; font-size: 14px; white-space: nowrap;">Hours at work: <span style="font-family: Unbounded, sans-serif; font-size: 16px;">{{ a3.hours }}</span></div>
+                </div>
+                <div style="font-weight: 500; font-size: 16px;">{{ a3.text }}</div>
+                <sc-if value="{{ a3.hasRule }}" hint-placeholder-val="{{ false }}">
+                  <div style="border-left: 4px solid #c2715a; padding-left: 12px; font-weight: 700; font-size: 16px;">Company rule: “{{ a3.rule }}”</div>
+                </sc-if>
+              </div>
+              <div style="font-size: 13px; color: #5a5f6b;">Times approximate a Lowell summer timetable, 1840s–1850s. Rules: Hamilton Manufacturing Company regulations, 1848.</div>
+            </sc-if>
+
+            <sc-if value="{{ isA4 }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <button onClick="{{ toggleSound }}" style="background: {{ a4.sBg }}; color: {{ a4.sFg }}; border: 2px solid #22262e; border-radius: 3px; padding: 9px 16px; font-weight: 800; font-size: 15px; cursor: pointer;">{{ a4.sBtn }}</button>
+                <div style="font-size: 14px; font-weight: 600; color: #5a5f6b;">Turn your volume down first.</div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 15px;"><div>Looms per weaver</div><div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 24px;">{{ a4.n }}</div></div>
+                <input type="range" min="2" max="4" step="1" value="{{ a4.n }}" onChange="{{ setLooms }}" style="width: 100%; height: 28px; cursor: pointer;" />
+                <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: #5a5f6b;"><div>2</div><div>3</div><div>4</div></div>
+              </div>
+              <div style="background: #e9e3d6; border-radius: 3px; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;"><div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 17px;">{{ a4.era }}</div><div style="font-weight: 600; font-size: 16px;">{{ a4.text }}</div></div>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                  <div style="font-weight: 700; font-size: 14px;">Cloth made by one weaver</div>
+                  <div style="display: flex; align-items: center; gap: 10px;"><div style="width: {{ a4.w }}; height: 22px; background: #5f8f96; border: 2px solid #22262e; border-radius: 2px; transition: width 0.5s;"></div><div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 15px;">{{ a4.x }}</div></div>
+                </div>
+                <div style="font-size: 14px; font-weight: 600; color: #4a4d55;">In the scene, the weaver in teal on the top floor tends the teal looms.</div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ isA5 }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size: 15px; font-weight: 600; color: #5a5f6b;">Click each year. Decide whether workers won or lost, then reveal.</div>
+              <div style="position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px;">
+                <div style="position: absolute; left: 0; right: 0; top: 50%; height: 3px; background: #22262e;"></div>
+                <sc-for list="{{ a5Events }}" as="e" hint-placeholder-count="5">
+                  <button onClick="{{ e.pick }}" style="position: relative; background: {{ e.bg }}; color: {{ e.fg }}; border: 2px solid #22262e; border-radius: 3px; padding: 9px 2px; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 14px; cursor: pointer;">{{ e.year }}</button>
+                </sc-for>
+              </div>
+              <div style="background: #e9e3d6; border-radius: 3px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; min-height: 180px;">
+                <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 18px;">{{ a5.title }}</div>
+                <div style="font-weight: 500; font-size: 16px;">{{ a5.text }}</div>
+                <sc-if value="{{ a5Revealed }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                    <div style="background: {{ a5.outBg }}; color: #f2ede3; border-radius: 2px; padding: 3px 9px; font-weight: 900; font-size: 13px; letter-spacing: 0.05em;">{{ a5.outcome }}</div>
+                    <div style="font-weight: 600; font-size: 15px;">{{ a5.result }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ a5Hidden }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ a5Reveal }}" style="align-self: flex-start; background: #22262e; color: #f2ede3; border: none; border-radius: 3px; padding: 7px 14px; font-weight: 800; font-size: 14px; cursor: pointer;">Guess first, then reveal</button>
+                </sc-if>
+              </div>
+              <div style="font-size: 13px; color: #5a5f6b;">Compiled from court records, Robinson’s Loom and Spindle (1898) and the Massachusetts House report on hours of labor (1845).</div>
+            </sc-if>
+
+            <sc-if value="{{ isA6 }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size: 15px; font-weight: 600; color: #5a5f6b;">Immigrants arriving in the U.S. each year. Click a bar.</div>
+              <div style="height: 190px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; align-items: end; border-bottom: 3px solid #22262e;">
+                <sc-for list="{{ a6Bars }}" as="b" hint-placeholder-count="6">
+                  <button onClick="{{ b.pick }}" aria-label="{{ b.year }}" style="height: {{ b.h }}; background: {{ b.bg }}; border: 2px solid #22262e; border-bottom: none; border-radius: 2px 2px 0 0; cursor: pointer; padding: 0;"></button>
+                </sc-for>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; text-align: center; font-weight: 800; font-size: 14px; margin-top: -6px;">
+                <sc-for list="{{ a6Bars }}" as="b" hint-placeholder-count="6"><div>{{ b.year }}</div></sc-for>
+              </div>
+              <div style="background: #e9e3d6; border-radius: 3px; padding: 12px 16px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+                <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 26px; white-space: nowrap;">{{ a6Sel.val }}</div>
+                <div style="font-weight: 600; font-size: 15px; flex: 1; min-width: 180px;">{{ a6Sel.note }}</div>
+              </div>
+              <div style="font-size: 13px; color: #5a5f6b;">Source: U.S. Department of Homeland Security, Yearbook of Immigration Statistics, Table 1.</div>
+            </sc-if>
+
+            <sc-if value="{{ isA7 }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size: 15px; font-weight: 600; color: #5a5f6b;">Click each step. The marked bale moves through the scene.</div>
+              <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 5px;">
+                <sc-for list="{{ a7Steps }}" as="st" hint-placeholder-count="6">
+                  <button onClick="{{ st.pick }}" style="background: {{ st.bg }}; color: {{ st.fg }}; border: 2px solid #22262e; border-radius: 3px; padding: 8px 2px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                    <span style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 16px;">{{ st.n }}</span>
+                    <span style="font-size: 11px; font-weight: 700; line-height: 1.15;">{{ st.short }}</span>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="background: #e9e3d6; border-radius: 3px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-height: 110px;">
+                <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 18px;">{{ a7.title }}</div>
+                <div style="font-weight: 500; font-size: 16px;">{{ a7.text }}</div>
+              </div>
+              <div style="font-size: 13px; color: #5a5f6b;">Steps summarize historians of the cotton trade, including Sven Beckert, Empire of Cotton (2014).</div>
+            </sc-if>
+          </div>
+        </div>
+
+        <sc-if value="{{ isA4 }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; gap: 12px; align-items: center; padding: 0 6px;">
+          <div style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 3px; background: {{ s.color }}; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px;">↓</div>
+          <div style="font-size: 15px; font-weight: 700; color: #3d414a; text-wrap: pretty;">{{ ctx.tc }}</div>
+        </div>
+        <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; overflow: hidden;">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-bottom: 2px solid #22262e;">
+            <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 3px; background: #22262e; color: #f2ede3; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 14px;">C</div>
+            <div style="font-weight: 800; font-size: 18px; flex: 1;">One Loom, Up Close</div>
+            <div style="background: #5f8f96; border-radius: 2px; padding: 3px 8px; font-weight: 800; font-size: 11px; letter-spacing: 0.06em;">INTERACTIVE</div>
+          </div>
+          <div style="padding: 10px 16px; background: #f2ede3; border-bottom: 1px solid #d8d0bf; display: flex; flex-direction: column; gap: 3px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 0.08em; color: #5a5f6b;">WHAT YOU’RE LOOKING AT</div>
+            <div style="font-size: 15px; font-weight: 600; color: #3d414a; text-wrap: pretty;">{{ ctx.c }}</div>
+          </div>
+          <div style="padding: 16px; display: flex; flex-direction: column; gap: 14px;">
+            <button onClick="{{ toggleClose }}" style="align-self: flex-start; background: {{ c4.bBg }}; color: #22262e; border: 2px solid #22262e; border-radius: 3px; padding: 9px 16px; font-weight: 800; font-size: 15px; cursor: pointer;">{{ c4.btn }}</button>
+            <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px;">
+              <sc-for list="{{ hz }}" as="hzd" hint-placeholder-count="5">
+                <button onClick="{{ hzd.pick }}" style="background: {{ hzd.bg }}; color: {{ hzd.fg }}; border: 2px solid #22262e; border-radius: 3px; padding: 7px 2px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                  <span style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 15px;">{{ hzd.n }}</span>
+                  <span style="font-size: 12px; font-weight: 700;">{{ hzd.short }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="background: #e9e3d6; border-radius: 3px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-height: 120px;">
+              <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 18px;">{{ c4.title }}</div>
+              <div style="font-weight: 500; font-size: 16px; text-wrap: pretty;">{{ c4.text }}</div>
+            </div>
+            <div style="background: #22262e; color: #f2ede3; border-radius: 3px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px;">
+              <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #e3a58f;">IF A WORKER GOT HURT</div>
+              <div style="font-size: 16px; font-weight: 600;">There were no safety laws for factories yet and no pay for workers who got hurt. An injured worker usually lost her wages, and often her job.</div>
+            </div>
+            <div style="font-size: 13px; color: #5a5f6b;">Based on mill workers’ accounts and historians of New England textile mills.</div>
+          </div>
+        </div>
+        </sc-if>
+
+        <div style="display: flex; gap: 12px; align-items: center; padding: 0 6px;">
+          <div style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 3px; background: {{ s.color }}; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px;">↓</div>
+          <div style="font-size: 15px; font-weight: 700; color: #3d414a; text-wrap: pretty;">{{ ctx.tb }}</div>
+        </div>
+
+        <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; overflow: hidden;">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-bottom: 2px solid #22262e;">
+            <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 3px; background: #22262e; color: #f2ede3; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 14px;">B</div>
+            <div style="font-weight: 800; font-size: 18px; flex: 1;">{{ b.title }}</div>
+            <div style="background: #e9e3d6; border-radius: 2px; padding: 3px 8px; font-weight: 800; font-size: 11px; letter-spacing: 0.06em;">{{ b.tag }}</div>
+          </div>
+          <div style="padding: 10px 16px; background: #f2ede3; border-bottom: 1px solid #d8d0bf; display: flex; flex-direction: column; gap: 3px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 0.08em; color: #5a5f6b;">WHAT YOU’RE LOOKING AT</div>
+            <div style="font-size: 15px; font-weight: 600; color: #3d414a; text-wrap: pretty;">{{ ctx.b }}</div>
+          </div>
+          <div style="display: flex;">
+            <sc-if value="{{ b.hasImg }}" hint-placeholder-val="{{ false }}">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/1845%20Lowell%20Offering%20cover.png?width=400" alt="Cover of the Lowell Offering" onError="{{ hideImg }}" style="display: block; width: 120px; flex-shrink: 0; object-fit: cover; border-right: 2px solid #22262e; background: #e9e3d6;" />
+            </sc-if>
+            <div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 0;">
+              <sc-if value="{{ b.hasIntro }}" hint-placeholder-val="{{ false }}"><div style="font-size: 16px; font-weight: 500;">{{ b.intro }}</div></sc-if>
+              <sc-if value="{{ b.hasAd }}" hint-placeholder-val="{{ false }}"><div style="background: #f6f1e4; border: 1px solid #22262e; border-radius: 2px; padding: 12px 14px; font-family: Georgia, serif; font-size: 17px; line-height: 1.4;">{{ b.ad }}</div></sc-if>
+              <sc-if value="{{ b.hasLines }}" hint-placeholder-val="{{ false }}">
+                <div style="background: #22262e; color: #f2ede3; border-radius: 3px; padding: 16px 18px; font-size: 19px; font-weight: 700; line-height: 1.5; display: flex; flex-direction: column;">
+                  <sc-for list="{{ b.lines }}" as="ln" hint-placeholder-count="5"><span style="color: {{ ln.c }};">{{ ln.t }}</span></sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ b.hasRows }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; border: 2px solid #22262e; border-radius: 3px; overflow: hidden;">
+                  <div style="display: grid; grid-template-columns: 70px 1fr 1fr; gap: 8px; padding: 8px 12px; background: #22262e; color: #f2ede3; font-weight: 800; font-size: 13px;"><div>Year</div><div>Cotton grown (bales)</div><div>Enslaved people</div></div>
+                  <sc-for list="{{ b.rows }}" as="r" hint-placeholder-count="3">
+                    <div style="display: grid; grid-template-columns: 70px 1fr 1fr; gap: 8px; padding: 8px 12px; border-top: 1px solid #d8d0bf; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 14px;"><div>{{ r.y }}</div><div>{{ r.a }}</div><div>{{ r.b }}</div></div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ b.hasBody }}" hint-placeholder-val="{{ true }}"><div style="font-size: 16px; font-weight: 500; text-wrap: pretty;"><sc-for list="{{ bS }}" as="g" hint-placeholder-count="1"><span onClick="{{ g.pick }}" style="font-weight: {{ g.fw }}; border-bottom: {{ g.bb }}; background: {{ g.bg }}; cursor: {{ g.cur }};">{{ g.t }}</span></sc-for></div></sc-if>
+              <div style="font-size: 13px; color: #5a5f6b;">{{ b.src }}</div>
+            </div>
+          </div>
+          <sc-if value="{{ b.hasCheck }}" hint-placeholder-val="{{ false }}">
+            <div style="background: #22262e; color: #f2ede3; padding: 12px 16px; display: flex; gap: 12px; align-items: flex-start;">
+              <div style="background: {{ s.color }}; color: #22262e; border-radius: 2px; padding: 3px 8px; font-weight: 900; font-size: 11px; letter-spacing: 0.06em; white-space: nowrap;">SOURCING CHECK</div>
+              <div style="font-size: 15px; font-weight: 600;">{{ b.check }}</div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="display: flex; gap: 12px; align-items: center; padding: 0 6px;">
+          <div style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 3px; background: {{ s.color }}; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px;">↓</div>
+          <div style="font-size: 15px; font-weight: 700; color: #3d414a;">Now use the quote, Doc A and Doc B to answer the questions on your paper.</div>
+        </div>
+
+        <div style="background: #22262e; color: #f2ede3; border-radius: 4px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 18px; color: {{ s.color }};">Answer on Your Paper</div>
+          <sc-for list="{{ qs }}" as="q" hint-placeholder-count="3">
+            <div style="display: flex; gap: 12px;"><div style="font-family: Unbounded, sans-serif; font-weight: 900; color: #c9a54e;">{{ q.n }}</div><div>{{ q.t }}</div></div>
+          </sc-for>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; align-items: start;">
+          <div style="background: #fbf9f4; border: 2px dashed #22262e; border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; font-size: 15px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 15px;">Vocab</div>
+            <sc-for list="{{ vocab }}" as="v" hint-placeholder-count="3"><div><strong>{{ v.w }}</strong>: {{ v.d }}</div></sc-for>
+          </div>
+          <div style="background: #e8d9ae; border: 2px solid #22262e; border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 15px;">Who Benefited? · Clue {{ s.num }}</div>
+            <div style="font-size: 14px; font-weight: 600; color: #4a4d55;">Who gained here, and who paid the price?</div>
+            <div style="font-weight: 700; font-size: 16px;">{{ s.clue }}</div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; padding-bottom: 4px;">
+          <sc-if value="{{ canFinish }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ finish }}" style="background: {{ s.color }}; color: #22262e; border: 2px solid #22262e; border-radius: 3px; padding: 11px 20px; font-weight: 800; font-size: 16px; cursor: pointer; box-shadow: 3px 3px 0 #22262e;">I wrote my clue · Finish stop ✓</button>
+          </sc-if>
+          <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+            <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 3px; padding: 10px 14px; font-weight: 800; font-size: 15px;">✓ Completed</div>
+            <button onClick="{{ goNext }}" style="background: #22262e; color: #f2ede3; border: 2px solid #22262e; border-radius: 3px; padding: 10px 18px; font-weight: 800; font-size: 15px; cursor: pointer;">{{ nextLabel }}</button>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showIntro }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(34,38,46,0.42); display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; animation: lwDim 0.5s ease both;">
+      <div style="width: min(660px, 100%); max-height: 100%; overflow-y: auto; overflow-x: hidden; box-sizing: border-box; background: #f2ede3; border: 2px solid #22262e; border-radius: 4px; box-shadow: 8px 8px 0 #22262e; display: flex; flex-direction: column; animation: lwIn 0.6s 0.15s ease both;">
+        <div style="height: 8px; flex-shrink: 0; background: {{ s.color }};"></div>
+        <div style="padding: 22px 26px 24px; display: flex; flex-direction: column; gap: 16px; font-size: 17px; line-height: 1.5;">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #5a5f6b;">STOP {{ s.num }} OF 7 · {{ s.placeCaps }}</div>
+            <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 28px; line-height: 1.1;">{{ s.station }}</div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start; background: #22262e; color: #f2ede3; border-radius: 3px; padding: 12px 16px;">
+            <div style="flex-shrink: 0; background: {{ s.color }}; color: #22262e; border-radius: 2px; padding: 3px 8px; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 0.08em; margin-top: 3px; white-space: nowrap;">YOU ARE HERE</div>
+            <div style="font-weight: 700; font-size: 17px;"><sc-for list="{{ ctxS.here }}" as="g" hint-placeholder-count="1"><span onClick="{{ g.pick }}" style="font-weight: {{ g.fw }}; border-bottom: {{ g.bb }}; background: {{ g.bg }}; cursor: {{ g.cur }};">{{ g.t }}</span></sc-for></div>
+          </div>
+          <div style="text-wrap: pretty;"><sc-for list="{{ ctxS.local }}" as="g" hint-placeholder-count="1"><span onClick="{{ g.pick }}" style="font-weight: {{ g.fw }}; border-bottom: {{ g.bb }}; background: {{ g.bg }}; cursor: {{ g.cur }};">{{ g.t }}</span></sc-for></div>
+          <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.04em;">THE BIGGER PICTURE · {{ ctx.bigTitle }}</div>
+            <div style="text-wrap: pretty;"><sc-for list="{{ ctxS.big }}" as="g" hint-placeholder-count="1"><span onClick="{{ g.pick }}" style="font-weight: {{ g.fw }}; border-bottom: {{ g.bb }}; background: {{ g.bg }}; cursor: {{ g.cur }};">{{ g.t }}</span></sc-for></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #5a5f6b;">HOW IT CHANGED EVERYDAY LIFE</div>
+            <div style="text-wrap: pretty;"><sc-for list="{{ ctxS.life }}" as="g" hint-placeholder-count="1"><span onClick="{{ g.pick }}" style="font-weight: {{ g.fw }}; border-bottom: {{ g.bb }}; background: {{ g.bg }}; cursor: {{ g.cur }};">{{ g.t }}</span></sc-for></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #5a5f6b;">AT THIS STOP</div>
+            <div style="font-weight: 600; text-wrap: pretty;">{{ ctx.ahead }}</div>
+          </div>
+          <div style="background: #e8d9ae; border: 2px solid #22262e; border-radius: 4px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em;">INTRO QUESTION · ANSWER ON YOUR PAPER</div>
+            <div style="font-weight: 800; font-size: 17px;">{{ ctx.iq }}</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-top: 4px;">
+            <button onClick="{{ closePanel }}" style="background: none; border: none; padding: 0; font-weight: 700; font-size: 14px; color: #5a5f6b; text-decoration: underline; cursor: pointer;">Back to the map</button>
+            <button onClick="{{ startStation }}" style="background: {{ s.color }}; color: #22262e; border: 2px solid #22262e; border-radius: 3px; padding: 11px 22px; font-weight: 800; font-size: 16px; cursor: pointer; box-shadow: 3px 3px 0 #22262e;">Start the station →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showWkCard }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; top: 16px; right: 16px; width: min(300px, calc(100% - 32px)); box-sizing: border-box; background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; box-shadow: 4px 4px 0 #22262e; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: {{ wkV.color }}; border: 2px solid #22262e; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 17px; color: #22262e;">{{ wkV.initial }}</div>
+        <div style="display: flex; flex-direction: column; gap: 1px; min-width: 0;">
+          <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 16px; line-height: 1.1;">{{ wkV.name }}</div>
+          <div style="font-size: 12px; font-weight: 600; color: #5a5f6b;">{{ wkV.sub }}</div>
+          <div style="font-size: 12px; font-weight: 700; color: #3d414a;">{{ wkV.goal }}</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 5px;">
+          <sc-for list="{{ meters }}" as="mt" hint-placeholder-count="5">
+            <div style="display: grid; grid-template-columns: 112px minmax(0, 1fr) 40px; gap: 8px; align-items: center; font-size: 13px; font-weight: 700;">
+              <div>{{ mt.label }}</div>
+              <div style="height: 9px; background: #e2dbcc; border-radius: 1px; overflow: hidden;"><div style="width: {{ mt.w }}; height: 100%; background: {{ mt.col }}; transition: width 0.6s;"></div></div>
+              <div style="text-align: right; font-family: Unbounded, sans-serif; font-size: 12px;">{{ mt.val }}</div>
+            </div>
+          </sc-for>
+      </div>
+      <button onClick="{{ openJournal }}" style="display: flex; justify-content: space-between; align-items: center; background: #22262e; color: #f2ede3; border: none; border-radius: 3px; padding: 8px 12px; font-weight: 800; font-size: 14px; cursor: pointer;"><span>Journal &amp; badges</span><span style="font-family: Unbounded, sans-serif; font-size: 12px; color: #c9a54e;">★ {{ wkV.badgeCount }}</span></button>
+    </div>
+  </sc-if>
+  <sc-if value="{{ showCreate }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; z-index: 20; background: rgba(34,38,46,0.45); display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; animation: lwDim 0.4s ease both;">
+      <div style="width: min(620px, 100%); max-height: 100%; overflow-y: auto; overflow-x: hidden; box-sizing: border-box; background: #f2ede3; border: 2px solid #22262e; border-radius: 4px; box-shadow: 8px 8px 0 #22262e; display: flex; flex-direction: column; animation: lwIn 0.5s 0.1s ease both;">
+        <div style="height: 8px; flex-shrink: 0; background: #c9a54e;"></div>
+        <div style="padding: 22px 26px 24px; display: flex; flex-direction: column; gap: 16px; font-size: 16px; line-height: 1.45;">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #5a5f6b;">CREATE YOUR MILL WORKER</div>
+            <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 26px; line-height: 1.1;">Who are you?</div>
+            <div style="text-wrap: pretty;">It’s 1836. You are a young woman leaving home to work in the Lowell mills. At every stop, you will make a choice for your worker. Your choices change what happens next.</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; background: {{ cdColor }}; border: 2px solid #22262e; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 24px; color: #22262e;">{{ cdInitial }}</div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 4px;">
+              <div style="font-weight: 800; font-size: 14px;">Name</div>
+              <input type="text" value="{{ cd.name }}" onChange="{{ setName }}" placeholder="Type a name" style="font: inherit; font-size: 17px; font-weight: 700; padding: 9px 12px; border: 2px solid #22262e; border-radius: 3px; background: #fbf9f4; color: #22262e; outline: none; width: 100%; box-sizing: border-box;" />
+            </div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 16px 24px;">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <div style="font-weight: 800; font-size: 14px;">Age</div>
+              <div style="display: flex; gap: 6px;"><sc-for list="{{ cdAges }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.pick }}" style="background: {{ o.bg }}; color: {{ o.fg }}; border: 2px solid {{ o.bd }}; border-radius: 3px; padding: 6px 14px; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 14px; cursor: pointer;">{{ o.t }}</button></sc-for></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <div style="font-weight: 800; font-size: 14px;">Dress color</div>
+              <div style="display: flex; gap: 8px;"><sc-for list="{{ cdColors }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.pick }}" aria-label="Color" style="width: 34px; height: 34px; padding: 0; border-radius: 50%; background: {{ o.c }}; border: 3px solid {{ o.bd }}; box-shadow: 0 0 0 1px #22262e; cursor: pointer;"></button></sc-for></div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-weight: 800; font-size: 14px;">Where are you from?</div>
+            <sc-for list="{{ cdHomes }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.pick }}" style="text-align: left; background: {{ o.bg }}; color: {{ o.fg }}; border: 2px solid {{ o.bd }}; border-radius: 3px; padding: 8px 12px; cursor: pointer; display: flex; flex-direction: column; gap: 1px;"><span style="font-weight: 800; font-size: 15px;">{{ o.t }}</span><span style="font-size: 13px; font-weight: 500;">{{ o.sub }}</span></button></sc-for>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-weight: 800; font-size: 14px;">Why are you going to Lowell?</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 6px;"><sc-for list="{{ cdReasons }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.pick }}" style="text-align: left; background: {{ o.bg }}; color: {{ o.fg }}; border: 2px solid {{ o.bd }}; border-radius: 3px; padding: 8px 12px; font-weight: 700; font-size: 15px; cursor: pointer;">{{ o.t }}</button></sc-for></div>
+          </div>
+          <div style="font-size: 13px; font-weight: 600; color: #5a5f6b;">Your worker is made up, but every choice is based on things that really happened to mill workers.</div>
+          <div style="display: flex; justify-content: flex-end;">
+            <sc-if value="{{ canBegin }}" hint-placeholder-val="{{ false }}"><button onClick="{{ beginWorker }}" style="background: #c9a54e; color: #22262e; border: 2px solid #22262e; border-radius: 3px; padding: 11px 22px; font-weight: 800; font-size: 16px; cursor: pointer; box-shadow: 3px 3px 0 #22262e;">Board the train to Lowell →</button></sc-if>
+            <sc-if value="{{ cantBegin }}" hint-placeholder-val="{{ true }}"><div style="background: #e2dbcc; color: #6f6c65; border: 2px solid #a9a497; border-radius: 3px; padding: 11px 22px; font-weight: 800; font-size: 16px;">Type a name to begin</div></sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ showChoice }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; z-index: 20; background: rgba(34,38,46,0.45); display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; animation: lwDim 0.4s ease both;">
+      <div style="width: min(620px, 100%); max-height: 100%; overflow-y: auto; overflow-x: hidden; box-sizing: border-box; background: #f2ede3; border: 2px solid #22262e; border-radius: 4px; box-shadow: 8px 8px 0 #22262e; display: flex; flex-direction: column; animation: lwIn 0.5s 0.1s ease both;">
+        <div style="height: 8px; flex-shrink: 0; background: {{ s.color }};"></div>
+        <div style="padding: 22px 26px 24px; display: flex; flex-direction: column; gap: 16px; font-size: 17px; line-height: 1.45;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: {{ wkV.color }}; border: 2px solid #22262e; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 20px; color: #22262e;">{{ wkV.initial }}</div>
+            <div style="display: flex; flex-direction: column; gap: 3px;">
+              <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #5a5f6b;">STOP {{ ch.num }} · {{ ch.year }} · YOUR CHOICE</div>
+              <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 24px; line-height: 1.1;">{{ ch.title }}</div>
+            </div>
+          </div>
+          <div style="text-wrap: pretty;">{{ ch.scen }}</div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <sc-for list="{{ ch.opts }}" as="o" hint-placeholder-count="3">
+              <button onClick="{{ o.pick }}" style="text-align: left; display: flex; gap: 12px; align-items: center; background: {{ o.bg }}; color: {{ o.fg }}; border: 2px solid {{ o.bd }}; border-radius: 3px; padding: 11px 14px; cursor: pointer;">
+                <span style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 3px; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 13px;">{{ o.letter }}</span>
+                <span style="font-weight: 700; font-size: 16px;">{{ o.t }}</span>
+              </button>
+            </sc-for>
+          </div>
+          <div style="background: #e8d9ae; border-radius: 3px; padding: 10px 14px; font-size: 15px; font-weight: 700;">Make a prediction. You will find out what happens after you study this stop’s documents.</div>
+          <div style="display: flex; justify-content: flex-end;">
+            <sc-if value="{{ hasPick }}" hint-placeholder-val="{{ false }}"><button onClick="{{ lockChoice }}" style="background: {{ s.color }}; color: #22262e; border: 2px solid #22262e; border-radius: 3px; padding: 11px 22px; font-weight: 800; font-size: 16px; cursor: pointer; box-shadow: 3px 3px 0 #22262e;">Lock in my choice →</button></sc-if>
+            <sc-if value="{{ noPick }}" hint-placeholder-val="{{ true }}"><div style="background: #e2dbcc; color: #6f6c65; border: 2px solid #a9a497; border-radius: 3px; padding: 11px 22px; font-weight: 800; font-size: 16px;">Pick A, B or C</div></sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ showOutcome }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; z-index: 20; background: rgba(34,38,46,0.45); display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; animation: lwDim 0.4s ease both;">
+      <div style="width: min(600px, 100%); max-height: 100%; overflow-y: auto; overflow-x: hidden; box-sizing: border-box; background: #f2ede3; border: 2px solid #22262e; border-radius: 4px; box-shadow: 8px 8px 0 #22262e; display: flex; flex-direction: column; animation: lwIn 0.5s 0.1s ease both;">
+        <div style="height: 8px; flex-shrink: 0; background: {{ s.color }};"></div>
+        <div style="padding: 22px 26px 24px; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.45;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: {{ wkV.color }}; border: 2px solid #22262e; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 20px; color: #22262e;">{{ wkV.initial }}</div>
+            <div style="display: flex; flex-direction: column; gap: 3px;">
+              <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #5a5f6b;">STOP {{ oc.num }} · {{ oc.year }} · WHAT HAPPENED</div>
+              <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 22px; line-height: 1.1;">{{ oc.title }}</div>
+            </div>
+          </div>
+          <div style="font-size: 15px; font-weight: 700; color: #5a5f6b;">You chose: {{ oc.choiceT }}</div>
+          <div style="text-wrap: pretty;">{{ oc.out }}</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <sc-for list="{{ oc.deltas }}" as="dl" hint-placeholder-count="3"><div style="background: {{ dl.bg }}; border: 1.5px solid #22262e; border-radius: 2px; padding: 3px 9px; font-weight: 800; font-size: 14px;">{{ dl.t }}</div></sc-for>
+          </div>
+          <div style="font-size: 13px; font-weight: 600; color: #5a5f6b;">Includes a few months of work: +$30 savings and −3 health.</div>
+          <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #5a5f6b;">{{ wkV.name }}’S JOURNAL</div>
+            <div style="font-size: 17px; font-style: italic; font-weight: 500;">“{{ oc.diary }}”</div>
+          </div>
+          <sc-if value="{{ oc.hasNote }}" hint-placeholder-val="{{ false }}">
+            <div style="background: #22262e; color: #f2ede3; border-radius: 3px; padding: 12px 16px; font-weight: 700; font-size: 16px;">{{ oc.note }}</div>
+          </sc-if>
+          <div style="display: flex; justify-content: flex-end;">
+            <button onClick="{{ closeOutcome }}" style="background: #22262e; color: #f2ede3; border: 2px solid #22262e; border-radius: 3px; padding: 11px 22px; font-weight: 800; font-size: 16px; cursor: pointer; box-shadow: 3px 3px 0 {{ s.color }};">{{ oc.btn }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ showEnding }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; z-index: 20; background: rgba(34,38,46,0.45); display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; animation: lwDim 0.4s ease both;">
+      <div style="width: min(640px, 100%); max-height: 100%; overflow-y: auto; overflow-x: hidden; box-sizing: border-box; background: #f2ede3; border: 2px solid #22262e; border-radius: 4px; box-shadow: 8px 8px 0 #22262e; display: flex; flex-direction: column; animation: lwIn 0.5s 0.1s ease both;">
+        <div style="height: 8px; flex-shrink: 0; background: #c9a54e;"></div>
+        <div style="padding: 22px 26px 24px; display: flex; flex-direction: column; gap: 16px; font-size: 17px; line-height: 1.45;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; background: {{ wkV.color }}; border: 2px solid #22262e; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 24px; color: #22262e;">{{ wkV.initial }}</div>
+            <div style="display: flex; flex-direction: column; gap: 3px;">
+              <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #5a5f6b;">1848 · THE END OF THE STORY</div>
+              <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 26px; line-height: 1.1;">What happened to {{ en.name }}?</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <sc-for list="{{ en.lines }}" as="ln" hint-placeholder-count="4"><div style="display: flex; gap: 10px;"><div style="flex-shrink: 0; width: 8px; height: 8px; margin-top: 9px; background: #22262e;"></div><div style="text-wrap: pretty;">{{ ln.t }}</div></div></sc-for>
+          </div>
+          <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; padding: 12px 16px; display: flex; flex-direction: column; gap: 5px;">
+            <sc-for list="{{ meters }}" as="mt" hint-placeholder-count="5">
+            <div style="display: grid; grid-template-columns: 112px minmax(0, 1fr) 40px; gap: 8px; align-items: center; font-size: 13px; font-weight: 700;">
+              <div>{{ mt.label }}</div>
+              <div style="height: 9px; background: #e2dbcc; border-radius: 1px; overflow: hidden;"><div style="width: {{ mt.w }}; height: 100%; background: {{ mt.col }}; transition: width 0.6s;"></div></div>
+              <div style="text-align: right; font-family: Unbounded, sans-serif; font-size: 12px;">{{ mt.val }}</div>
+            </div>
+          </sc-for>
+          </div>
+          <div style="background: #e9e3d6; border-radius: 3px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #5a5f6b;">WHAT REALLY HAPPENED</div>
+            <div style="text-wrap: pretty;">Most mill women stayed in Lowell for a few years. Many went home, married or moved west. Some, like Lucy Larcom, Harriet Robinson and Sarah Bagley, became writers, teachers and reformers. By the 1850s, Irish immigrants made up a large share of the mill workers, often for lower pay.</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <button onClick="{{ openJournal }}" style="background: #fbf9f4; color: #22262e; border: 2px solid #22262e; border-radius: 3px; padding: 10px 16px; font-weight: 800; font-size: 15px; cursor: pointer;">Read the journal ★ {{ wkV.badgeCount }}</button>
+            <button onClick="{{ closeEnding }}" style="background: #c9a54e; color: #22262e; border: 2px solid #22262e; border-radius: 3px; padding: 11px 22px; font-weight: 800; font-size: 16px; cursor: pointer; box-shadow: 3px 3px 0 #22262e;">Closing Task →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ showJournal }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; z-index: 20; background: rgba(34,38,46,0.45); display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; animation: lwDim 0.4s ease both;">
+      <div style="width: min(680px, 100%); max-height: 100%; overflow-y: auto; overflow-x: hidden; box-sizing: border-box; background: #f2ede3; border: 2px solid #22262e; border-radius: 4px; box-shadow: 8px 8px 0 #22262e; display: flex; flex-direction: column; animation: lwIn 0.5s 0.1s ease both;">
+        <div style="position: sticky; top: 0; z-index: 2; background: #22262e; color: #f2ede3; padding: 14px 18px; display: flex; align-items: center; gap: 12px;">
+          <div style="flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: {{ wkV.color }}; border: 2px solid #22262e; display: flex; align-items: center; justify-content: center; font-family: Unbounded, sans-serif; font-weight: 900; font-size: 17px; color: #22262e;">{{ wkV.initial }}</div>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 18px;">{{ wkV.name }}’s Journal</div>
+            <div style="font-size: 13px; font-weight: 600; color: #c9c3b6;">{{ wkV.sub }}</div>
+          </div>
+          <button onClick="{{ closeJournal }}" aria-label="Close" style="flex-shrink: 0; width: 32px; height: 32px; padding: 0; background: none; border: 2px solid #f2ede3; border-radius: 3px; font-weight: 800; font-size: 18px; line-height: 1; color: #f2ede3; cursor: pointer;">×</button>
+        </div>
+        <div style="padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 16px; font-size: 16px; line-height: 1.45;">
+          <div style="display: flex; flex-direction: column; gap: 5px;"><sc-for list="{{ meters }}" as="mt" hint-placeholder-count="5">
+            <div style="display: grid; grid-template-columns: 112px minmax(0, 1fr) 40px; gap: 8px; align-items: center; font-size: 13px; font-weight: 700;">
+              <div>{{ mt.label }}</div>
+              <div style="height: 9px; background: #e2dbcc; border-radius: 1px; overflow: hidden;"><div style="width: {{ mt.w }}; height: 100%; background: {{ mt.col }}; transition: width 0.6s;"></div></div>
+              <div style="text-align: right; font-family: Unbounded, sans-serif; font-size: 12px;">{{ mt.val }}</div>
+            </div>
+          </sc-for></div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #5a5f6b;">ENTRIES</div>
+            <sc-if value="{{ jr.noEntries }}" hint-placeholder-val="{{ false }}"><div style="font-weight: 600; color: #5a5f6b;">No entries yet. Finish a stop to add one.</div></sc-if>
+            <sc-for list="{{ jr.entries }}" as="e" hint-placeholder-count="0">
+              <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 3px; padding: 10px 14px; display: flex; flex-direction: column; gap: 3px;">
+                <div style="font-weight: 800; font-size: 13px; color: #5a5f6b;">{{ e.year }} · Stop {{ e.n }} · {{ e.title }}</div>
+                <div style="font-style: italic; font-size: 16px;">“{{ e.diary }}”</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #5a5f6b;">BADGES · {{ wkV.badgeCount }}</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px;">
+              <sc-for list="{{ jr.badges }}" as="b" hint-placeholder-count="0">
+                <div style="background: {{ b.bg }}; color: {{ b.fg }}; border: 2px solid {{ b.bd }}; border-radius: 3px; padding: 8px 10px; display: flex; gap: 8px; align-items: flex-start;">
+                  <div style="font-size: 18px; line-height: 1;">{{ b.mark }}</div>
+                  <div style="display: flex; flex-direction: column; gap: 1px;"><div style="font-weight: 800; font-size: 14px;">{{ b.name }}</div><div style="font-size: 12px; font-weight: 600;">{{ b.desc }}</div></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 40; background: #22262e; color: #f2ede3; border: 2px solid #c9a54e; border-radius: 4px; box-shadow: 4px 4px 0 #c9a54e; padding: 10px 18px; display: flex; align-items: center; gap: 12px; animation: lwIn 0.35s ease both;">
+      <div style="font-size: 22px; color: #c9a54e; line-height: 1;">★</div>
+      <div style="display: flex; flex-direction: column; gap: 1px;"><div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.08em; color: #c9a54e;">BADGE EARNED</div><div style="font-weight: 800; font-size: 16px;">{{ toastName }}</div></div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ hasTerm }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; left: 16px; bottom: 16px; z-index: 30; width: min(400px, calc(100% - 32px)); box-sizing: border-box; background: #fbf9f4; border: 2px solid #22262e; border-top: 6px solid #c9a54e; border-radius: 4px; box-shadow: 5px 5px 0 #22262e; padding: 12px 12px 14px 16px; display: flex; gap: 12px; align-items: flex-start; animation: lwIn 0.25s ease both;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0;">
+        <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 0.08em; color: #5a5f6b;">VOCAB</div>
+        <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 18px;">{{ termW }}</div>
+        <div style="font-size: 16px; font-weight: 500; line-height: 1.4;">{{ termD }}</div>
+      </div>
+      <button onClick="{{ closeTerm }}" aria-label="Close definition" style="flex-shrink: 0; width: 30px; height: 30px; padding: 0; background: none; border: 2px solid #22262e; border-radius: 3px; font-weight: 800; font-size: 17px; line-height: 1; color: #22262e; cursor: pointer;">×</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isClosing }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; top: 16px; right: 16px; bottom: 16px; width: min(620px, calc(100% - 32px)); overflow-y: auto; background: #f2ede3; border: 2px solid #22262e; border-radius: 4px; box-shadow: 6px 6px 0 #22262e; display: flex; flex-direction: column;">
+      <div style="position: sticky; top: 0; z-index: 2; background: #22262e; color: #f2ede3; padding: 16px 18px; display: flex; gap: 12px; align-items: flex-start;">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-family: Unbounded, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 0.06em; color: #c9c3b6;">CLOSING TASK</div>
+          <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 22px; line-height: 1.15; color: #c9a54e;">Who benefited from northern growth, and who paid the price?</div>
+          <div style="font-weight: 600; font-size: 16px;">Use your seven Who Benefited? clues to write a thesis on your paper.</div>
+        </div>
+        <button onClick="{{ closePanel }}" aria-label="Close" style="flex-shrink: 0; width: 32px; height: 32px; padding: 0; background: none; border: 2px solid #f2ede3; border-radius: 3px; font-weight: 800; font-size: 18px; line-height: 1; color: #f2ede3; cursor: pointer;">×</button>
+      </div>
+      <div style="padding: 16px; display: flex; flex-direction: column; gap: 16px; font-size: 17px; line-height: 1.45;">
+        <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 16px;">Step 1: Sort the groups</div>
+          <div>On your paper, sort each group into <strong>Benefited</strong>, <strong>Paid the price</strong> or <strong>Both</strong>.</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <div style="background: #6b8fb3; border-radius: 2px; padding: 4px 11px; font-weight: 700; font-size: 15px;">Boston Associates</div>
+            <div style="background: #c2715a; border-radius: 2px; padding: 4px 11px; font-weight: 700; font-size: 15px;">Mill women</div>
+            <div style="background: #c9a54e; border-radius: 2px; padding: 4px 11px; font-weight: 700; font-size: 15px;">Artisans</div>
+            <div style="background: #8f7fae; border-radius: 2px; padding: 4px 11px; font-weight: 700; font-size: 15px;">Irish laborers</div>
+            <div style="background: #c4834f; border-radius: 2px; padding: 4px 11px; font-weight: 700; font-size: 15px;">Southern planters</div>
+            <div style="background: #c4834f; border-radius: 2px; padding: 4px 11px; font-weight: 700; font-size: 15px;">Enslaved people</div>
+            <div style="background: #7a9e86; border-radius: 2px; padding: 4px 11px; font-weight: 700; font-size: 15px;">Shoppers buying cheap cloth</div>
+          </div>
+        </div>
+        <div style="background: #fbf9f4; border: 2px solid #22262e; border-radius: 4px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 16px;">Step 2: Pick your evidence</div>
+          <div>Choose two Who Benefited? clues that best support your claim. Write down which stop each came from.</div>
+        </div>
+        <div style="background: #e8d9ae; border: 2px solid #22262e; border-radius: 4px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 16px;">Step 3: Build your thesis</div>
+          <div style="display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 14px; align-items: center; background: #fbf9f4; border-radius: 3px; padding: 10px 14px;"><div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 18px;">Although</div><div style="font-weight: 600;">one group that benefited in some way…</div></div>
+          <div style="display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 14px; align-items: center; background: #22262e; color: #f2ede3; border-radius: 3px; padding: 10px 14px;"><div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 18px; color: #c9a54e;">Claim</div><div style="font-weight: 600;">___ benefited most / ___ paid the highest price for northern growth</div></div>
+          <div style="display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 14px; align-items: center; background: #fbf9f4; border-radius: 3px; padding: 10px 14px;"><div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 18px;">because</div><div style="font-weight: 600;">evidence from Stop ___ …</div></div>
+          <div style="display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 14px; align-items: center; background: #fbf9f4; border-radius: 3px; padding: 10px 14px;"><div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 18px;">and</div><div style="font-weight: 600;">evidence from Stop ___ .</div></div>
+        </div>
+        <div style="background: #fbf9f4; border: 2px dashed #22262e; border-radius: 4px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-family: Unbounded, sans-serif; font-weight: 900; font-size: 16px;">Step 4: Check it</div>
+          <div>☐ One sentence that answers the guiding question</div>
+          <div>☐ Names a specific group</div>
+          <div>☐ Uses evidence from two different stops</div>
+          <div>☐ The “Although” admits another side</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const N = 7;
+const KEY = 'cpa310-lowell-progress';
+const STOPS = [
+  { place: 'Railroad Depot', station: 'A New Kind of City', q: 'How fast did Lowell grow, and why here?', color: '#6b8fb3', aTitle: 'Lowell’s Population',
+    sp: { name: 'Charles Dickens', years: '1812–1870', role: 'English writer', intro: 'Dickens, a famous writer from London, rode the new train from Boston to Lowell in 1842 to see the mills for himself.', quote: '…nothing in the whole town looked old to me, except the mud, which in some parts was almost knee-deep…', src: 'Charles Dickens, American Notes, 1842' },
+    b: { title: 'Why Build Here?', tag: 'BACKGROUND', body: 'The Merrimack River drops about 32 feet at Pawtucket Falls, and falling water can power machines. In 1821, a group of rich Boston businessmen, later called the [[Boston Associates]], bought the farmland and the rights to the river. They dug [[canals|canal]] to carry the water to their mills. They named the town after Francis Cabot Lowell, who had studied factory machines in Britain.', src: 'Summary of the founding of Lowell, 1821–1826.' },
+    qs: ['Click through the years. About how many times bigger was Lowell in 1850 than in 1830?', 'Why did the Boston Associates build their mills here instead of in Boston?', 'Dickens says nothing looked old except the mud. What does that tell you about Lowell in 1842?'],
+    vocab: [['Boston Associates', 'the rich investors who built and owned the Lowell mills'], ['water power', 'energy from falling water used to run machines'], ['canal', 'a waterway dug by people']],
+    clue: 'Lowell went from farmland in 1820 to a city of 20,796 people in 1840. By then almost 8,000 people worked in its mills, most of them young women from New England farms.' },
+  { place: 'Canal & Water Wheel', station: 'From Workshop to Factory', q: 'How did one river run a whole factory?', color: '#c9a54e', aTitle: 'The Power System',
+    sp: { name: 'Alexis de Tocqueville', years: '1805–1859', role: 'French writer', intro: 'Tocqueville traveled across the United States in 1831 and 1832. He admired American democracy, but he worried about what factories would do to workers.', quote: '…in proportion as the workman improves the man is [[degraded]].', src: 'Alexis de Tocqueville, Democracy in America, Vol. 2, 1840. Henry Reeve translation.' },
+    b: { title: 'Everything Under One Roof', tag: 'BACKGROUND', body: 'Before the 1820s, most cloth was made by hand at home or in small shops. The Lowell mills did every step, from raw cotton to finished cloth, in one building. One water wheel turned the iron shafts and leather belts that ran every machine. Workers no longer set their own pace. The machines did.', src: 'Summary of the Waltham-Lowell system.' },
+    qs: ['Close the canal gate. What happens to the machines? What does this show about who controlled the pace of work?', 'Switch between 1790 and 1840. Who controlled the work in each year?', 'Tocqueville says that as the worker gets better at the job, “the man is degraded.” Put that in your own words. Do you agree?'],
+    vocab: [['artisan', 'a skilled worker who makes things by hand'], ['line shaft', 'a long spinning rod that carried power to the machines'], ['degraded', 'made lower or worse']],
+    clue: 'Weekly pay in the Lowell mills around 1840: superintendents (top bosses) $25, overseers $12, bookkeepers $9.50, mill women about $3.50. The owners earned profits on top of that.' },
+  { place: 'Boarding House', station: 'The Mill Girls', q: 'What was a mill girl’s day like?', color: '#c2715a', aTitle: 'A Day on the Bell Schedule',
+    sp: { name: 'Harriet Hanson Robinson', years: '1825–1911', role: 'Mill worker from age 10, later a writer', intro: 'Robinson’s mother moved the family to Lowell in 1832 to run a company boarding house. Harriet started work at age 10 as a [[doffer]], swapping full [[bobbins|bobbin]] for empty ones.', quote: 'We were paid two dollars a week; and how proud I was when my turn came to stand up on the bobbin-box, and write my name in the paymaster’s book…', src: 'Harriet H. Robinson, Loom and Spindle, 1898' },
+    b: { title: 'The Lowell Offering', tag: 'PRIMARY', img: 'x', body: 'The Lowell Offering (1840–1845) printed stories and poems written by mill women. Visitors praised it as proof that mill work was good for women. But its editors worked closely with the mill owners and did not print complaints about pay or hours.', src: 'Cover: The Lowell Offering, 1845.', check: 'Robinson wrote her memories more than 60 years later. The Offering was shaped by the owners. How might each one’s situation affect what it says?' },
+    qs: ['Click each bell. About how many hours did a mill girl work? Name two ways the company controlled her life outside work.', 'Robinson says she was “proud.” Why might mill work appeal to a farm girl in the 1830s?', 'Pick Robinson or the Lowell Offering. Give one reason to trust it and one reason to be careful.'],
+    vocab: [['doffer', 'a child worker who swapped full bobbins for empty ones'], ['bobbin', 'a spool that holds thread'], ['overseer', 'a boss who watches over workers'], ['Sabbath', 'Sunday, a day of worship']],
+    clue: 'A mill woman kept about $2.25 a week after paying $1.25 for room and board. That was more than she could earn as a servant or seamstress, but about half of what men were paid.' },
+  { place: 'Weaving Room', station: 'Inside the Mill', q: 'What was it like to work in the weaving room?', color: '#5f8f96', aTitle: 'Speed-up and Stretch-out',
+    sp: { name: 'Lucy Larcom', years: '1824–1893', role: 'Mill worker from age 11, later a poet', intro: 'Larcom worked in the Lowell mills for about ten years, starting as a child. Later she wrote a book about growing up there.', quote: '…the buzzing and hissing and whizzing of pulleys and rollers and [[spindles|spindle]] and flyers around me often grew tiresome.', src: 'Lucy Larcom, A New England Girlhood, 1889' },
+    b: { title: 'Harder Work in the 1840s', tag: 'BACKGROUND', body: 'In the 1840s, cloth prices fell. To keep their profits, owners ran the machines faster (the [[speed-up]]) and gave each worker more machines (the [[stretch-out]]). They also cut the pay for each piece of cloth. Overseers got a bonus when their room made more cloth, so they pushed workers even harder.', src: 'Summary of historians’ accounts, including Thomas Dublin, Women at Work (1979).' },
+    qs: ['Turn on the sound and reread Larcom’s words. How might 13 hours a day in this room affect a worker’s body?', 'Move the slider from 2 to 4 looms. Who gains from the stretch-out, and who pays for it?', 'Zoom in on one loom. Pick two dangers. Why do you think owners did not make the looms safer?'],
+    vocab: [['speed-up', 'running machines faster to make more cloth'], ['stretch-out', 'giving each worker more machines to tend'], ['piece rate', 'pay for each piece of work finished'], ['shuttle', 'the part of a loom that carries thread back and forth']],
+    clue: 'In the 1840s many weavers went from tending 2 looms to 3 or 4, while the pay for each piece of cloth was cut. They made much more cloth for only a little more money.' },
+  { place: 'Mill Yard Gate', station: 'Workers Push Back', q: 'How did mill workers fight for better pay and hours?', color: '#7a9e86', aTitle: 'Timeline: Workers vs. Owners',
+    sp: { name: 'Sarah Bagley', years: '1806–1889', role: 'Weaver and labor leader', intro: 'Bagley was a weaver who led the Lowell Female Labor Reform Association, a group of women workers. In 1845 she gave a speech to working men in a nearby town.', quote: '…when our rights are trampled upon and we appeal in vain to [[legislators|legislator]], what shall we do but appeal to the people?', src: 'Sarah Bagley, speech in Woburn, Mass., 1845' },
+    b: { title: 'The Strikers’ Song, 1836', tag: 'PRIMARY', intro: 'About 1,500 women sang this as they marched through Lowell during the 1836 strike.', lines: [['Oh! isn’t it a pity, such a pretty girl as I', 0], ['Should be sent to the factory to pine away and die?', 0], ['Oh! I cannot be a slave, I will not be a slave,', 1], ['For I’m so fond of liberty', 1], ['That I cannot be a slave.', 1]], src: 'As recorded in Harriet H. Robinson, Loom and Spindle, 1898.', check: 'The song compares mill work to slavery at a time when millions of Americans really were enslaved. Is that a fair comparison?' },
+    qs: ['For each year on the timeline, write W (workers won) or L (workers lost). What pattern do you see?', 'Compare 1806 and 1842. How did the law about unions change, and why did that matter?', 'Bagley says workers must “appeal to the people.” Why might she think lawmakers would not help them?'],
+    vocab: [['turn-out', 'a strike; workers walk off the job together'], ['union', 'a group of workers who act together'], ['petition', 'a signed request to the government'], ['legislator', 'a lawmaker']],
+    clue: 'In 1845, Lowell workers said they worked 13 to 14 hours a day, six days a week. When they asked for a ten-hour day, lawmakers said no.' },
+  { place: 'The Acre', station: 'Newcomers', q: 'Who built Lowell, and how were they treated?', color: '#8f7fae', aTitle: 'Immigrants Arriving per Year',
+    sp: { missing: true, name: 'Hugh Cummiskey', years: 'Arrived 1822', role: 'Irish canal worker and crew boss', intro: 'In 1822, Cummiskey led about 30 Irish workers on a walk from Charlestown to Lowell to dig the canals by hand. The work was dangerous and paid little. The men lived in shacks on land that became known as the Acre. None of their letters or speeches survive.' },
+    b: { title: 'History Detectives: “No Irish Need Apply”', tag: 'DEBATE', ad: 'WANTED — A girl to do general housework. Must come well recommended. No Irish need apply.', body: 'Were ads like this common? In 2002, a historian argued they were rare. In 2015, a 14-year-old student named Rebecca Fried searched old newspapers online and found dozens of real ads using the phrase.', src: 'Typical ad wording, 1840s–1850s. Richard Jensen, Journal of Social History, 2002; Rebecca A. Fried, Journal of Social History, 2015.' },
+    qs: ['Click 1820 and 1845. About how many times larger was immigration in 1845?', 'Why might no words survive from the Irish canal diggers? What does that mean for the history we can tell?', 'What is nativism? How does the ad show it?'],
+    vocab: [['immigrant', 'a person who moves to a new country to live'], ['nativism', 'favoring people born in a country over newcomers'], ['shanty', 'a small, roughly built shack'], ['famine', 'a time when there is not enough food and many people starve']],
+    clue: 'Many Irish immigrants took the lowest-paid, hardest jobs: digging canals, loading ships and cleaning houses. By the 1850s, Irish women were replacing Yankee farm girls in the Lowell mills.' },
+  { place: 'Cotton Storehouse', station: 'The Cotton Connection', q: 'How were Lowell’s mills tied to slavery?', color: '#c4834f', aTitle: 'Follow One Bale',
+    sp: { name: 'Charles Sumner', years: '1811–1874', role: 'Antislavery leader from Massachusetts, later a U.S. senator', intro: 'In 1848, Sumner attacked the partnership between New England mill owners and Southern cotton planters.', quote: '…an [[unhallowed]] union… between the lords of the [[lash]] and the lords of the [[loom]].', src: 'Charles Sumner, speech in Worcester, Mass., 1848' },
+    b: { title: 'Cotton and Slavery Grow Together', tag: 'DATA', rows: [['1820', '335,000', '1,538,022'], ['1830', '732,000', '2,009,043'], ['1840', '1,348,000', '2,487,355']], body: 'Eli Whitney’s [[cotton gin]] (1794) made growing cotton very profitable. Planters forced more and more enslaved people onto new land in the Deep South to grow it.', src: 'Historical Statistics of the United States; U.S. Census, 1820–1840.' },
+    qs: ['Follow the bale from start to finish. Explain why a Lowell mill could not run without the South.', 'Look at the table. How did cotton and the number of enslaved people change from 1820 to 1840? Why did they change together?', 'Who are the “lords of the lash” and the “lords of the loom”? Why did Sumner call their partnership “unhallowed”?'],
+    vocab: [['bale', 'a large, tightly packed bundle of cotton'], ['lash', 'a whip'], ['loom', 'a machine that weaves thread into cloth'], ['unhallowed', 'wicked, not holy']],
+    clue: 'Enslaved people did the work that supplied every Northern cotton mill, and they were paid nothing. Their number grew by almost one million between 1820 and 1840.' },
+];
+const CTX = [
+  { here: 'You just stepped off the train in Lowell, Massachusetts. It’s 1842.', bigTitle: 'A NATION OF CITIES',
+    local: 'Twenty years ago, this was farmland. Now Lowell is one of the biggest factory cities in America, full of brick mills, [[canals|canal]] and boarding houses.',
+    big: 'Lowell was not the only place changing. Across the North, small towns were growing into cities. New canals, steamboats and [[railroads|railroad]] tied farms, factories and cities together into one national market. Historians call this the [[Market Revolution]].',
+    life: 'Most families used to grow their own food and make their own clothes. Now more people worked for [[wages|wage]] and bought what they needed. Cloth woven here could end up in a store in Ohio or on a plantation in Mississippi.',
+    iq: 'How was the Market Revolution changing the way ordinary families lived and worked?',
+    ahead: 'See how fast Lowell grew and why it was built here.',
+    sp: 'A famous visitor’s first look at Lowell. Dickens came from London, the biggest factory city in the world, so notice what still surprised him.',
+    ta: 'Dickens saw a brand-new city. Next, measure how fast it grew.',
+    a: 'U.S. Census counts of Lowell’s population. Each bar is one census year.',
+    tb: 'The numbers show how fast Lowell grew. Next, find out why it was built here at all.',
+    b: 'Background on who built Lowell and why they picked this spot.' },
+  { here: 'You’re next to the canal that powers the mill.', bigTitle: 'THE END OF THE ARTISAN',
+    local: 'Water from the river rushes through this canal and turns a giant wheel. That one wheel powers every machine in the mill at the same time.',
+    big: 'Before factories, most goods were made by [[artisans|artisan]] like shoemakers, tailors and blacksmiths. They trained for years, owned their tools and set their own hours. Factory owners split the work into small, simple steps and hired cheaper workers to do them. The same thing was happening to shoemakers in Lynn, Massachusetts, and tailors in New York.',
+    life: 'Skilled workers lost their independence. Instead of running their own shops, many worked for [[wages|wage]] for someone else for the rest of their lives. The boss, the clock and the machine now set the pace.',
+    iq: 'How did the factory system change who was in control of work?',
+    ahead: 'See what changed when work moved from the workshop to the factory.',
+    sp: 'A warning from a visitor. Tocqueville admired American democracy, but he worried about what factory work would do to people.',
+    ta: 'Tocqueville worried about the factory system. Next, see how it worked.',
+    a: 'A working model of the mill’s power system, then a side-by-side look at making shoes before and after factories.',
+    tb: 'One wheel ran the whole building. Next, read why that was new.',
+    b: 'A short explanation of the system Lowell’s founders created.' },
+  { here: 'You’re outside a row of company boarding houses, where most mill workers live.', bigTitle: 'WOMEN AT WORK',
+    local: 'The mill owners hired young, single women from New England farms, mostly ages 15 to 30. The company decided where they lived, when they went to bed and whether they went to church. A woman who quit without permission could be [[blacklisted|blacklist]], so no other mill in Lowell would hire her.',
+    big: 'Many New England farms were struggling, because cheaper grain from the West now arrived by canal. Farm daughters had few ways to earn money, and mill jobs paid cash. For the first time in America, large numbers of women worked outside the home for [[wages|wage]].',
+    life: 'A mill girl could send money home, save for school or buy her own clothes. In return she gave the company about 73 hours a week and had very little say over her own life.',
+    iq: 'Why did young women take mill jobs, and what did they give up?',
+    ahead: 'Live through one day on the mill’s bell schedule and compare how mill women described their lives.',
+    sp: 'A memory from a former mill girl. Robinson started work at age 10 and wrote this book in 1898, when she was in her seventies.',
+    ta: 'Robinson remembers feeling proud. Next, see what her workday was really like.',
+    a: 'The mill’s bell schedule and the company’s own rules. Click each bell and watch the time of day change in the scene.',
+    tb: 'The rules show what the company wanted. Next, see how mill women were shown to the public.',
+    b: 'The cover of a magazine written by mill women. Think about who published it and why.' },
+  { here: 'The mill wall is cut away so you can see inside. You’re looking at the weaving rooms on the top floors.', bigTitle: 'MORE WORK FOR LESS PAY',
+    local: 'Each floor did one job. Cotton was cleaned on the bottom floor, spun into thread in the middle and woven into cloth at the top. Hundreds of [[looms|loom]] ran at once, all day long.',
+    big: 'By the 1840s, many companies had built mills, so cloth got cheaper. Then the [[Panic of 1837]] brought years of hard times. To protect their profits, owners made workers do more for less pay. Workers in many other trades faced the same pressure.',
+    life: 'Cheap factory cloth meant ordinary families could afford more clothes than ever. The people who made that cloth paid for it with long hours, low pay and their health.',
+    iq: 'Who gained from cheaper cloth, and who paid the cost?',
+    ahead: 'Hear the weaving room, see how the speed-up and stretch-out changed the job, and look closely at one dangerous machine.',
+    sp: 'Another mill girl’s memory, this time of the noise in the weaving room.',
+    ta: 'Larcom describes the noise. Next, hear it and see how the job changed.',
+    a: 'A model of the weaving room. Turn on the sound, then use the slider to give each weaver more looms.',
+    tc: 'Now get closer. Next, look at the dangers of a single loom.',
+    c: 'A close-up of one power loom and the weaver who runs it. Click each number to see how this machine could hurt her.',
+    tb: 'The loom was dangerous, and the work kept getting harder. Next, read why owners kept pushing.',
+    b: 'Historians’ summary of how mill work changed in the 1840s.' },
+  { here: 'You’re at the mill yard gate. Every morning it shut when the bell rang, and anyone late was locked out.', bigTitle: 'THE FIRST LABOR MOVEMENT',
+    local: 'Mill workers fought back against pay cuts and long hours. In 1834 and 1836, Lowell women went on strike. In the 1840s, they sent [[petitions|petition]] to the state government. The companies fired many of the leaders.',
+    big: 'Lowell was part of America’s first labor movement. Workers in Philadelphia, New York and Boston formed [[unions|union]] and went on strike. Their biggest goal was a ten-hour workday. Many argued that in a democracy, where ordinary men could now vote, workers should not be treated like servants.',
+    life: 'For most workers, 12 to 14 hours a day, six days a week, was normal. There was no paid vacation, no sick pay and no help if you were hurt on the job.',
+    iq: 'Why did workers start joining together instead of complaining on their own?',
+    ahead: 'Decide whether workers won or lost at five key moments.',
+    sp: 'A speech by Lowell’s best-known labor leader. Bagley was a weaver herself, speaking to other working people.',
+    ta: 'Bagley says workers must keep fighting. Next, see how their earlier fights turned out.',
+    a: 'A timeline of five times workers challenged their bosses. Guess each outcome before you reveal it.',
+    tb: 'The timeline shows the results. Next, hear the workers’ own voices from the 1836 strike.',
+    b: 'A song the strikers sang as they marched. Notice the word they repeat.' },
+  { here: 'You’ve crossed the canal into the Acre, a crowded Irish neighborhood next to the mills.', bigTitle: 'A NATION OF IMMIGRANTS',
+    local: 'The Acre started in 1822 as a camp for Irish workers who dug Lowell’s canals by hand. The mill owners needed their labor but did not give them housing like the mill girls. The Irish built their own homes and their own Catholic church.',
+    big: 'From 1820 to 1860, about five million [[immigrants|immigrant]] came to the United States, mostly from Ireland and Germany. After the [[Potato Famine]] hit Ireland in 1845, over a million Irish came to America. Most took the hardest, lowest-paying jobs in Northern cities. Some native-born Americans hated them for being Catholic and for competing for jobs. This is called [[nativism]].',
+    life: 'Immigrants dug the canals, laid the railroad tracks and loaded the ships that connected the country’s economy. By the 1850s, Irish women were taking many jobs in the Lowell mills, often for lower pay.',
+    iq: 'Why did immigrants end up with the hardest, lowest-paid jobs?',
+    ahead: 'Look at immigration numbers and investigate a debate between historians.',
+    sp: 'A missing voice. The Irish workers who dug Lowell’s canals left no letters or speeches. We only know about them from other people’s records.',
+    ta: 'Cummiskey’s crew was part of a much bigger wave. Next, see how big it got.',
+    a: 'Government counts of immigrants arriving in the U.S. Click each bar and look for the turning point.',
+    tb: 'More and more newcomers arrived. Next, see how some Americans responded.',
+    b: 'A job ad, and a debate between historians about how common ads like it really were.' },
+  { here: 'You’re at the storehouse where raw cotton waits to go into the mill.', bigTitle: 'NORTH AND SOUTH, TIED TOGETHER',
+    local: 'Every bale in this building was grown hundreds of miles away in the South, by enslaved people.',
+    big: 'The North’s factories and the South’s plantations grew together. Northern mills needed Southern cotton. Northern banks lent money to planters, and Northern ships carried cotton to Britain. Cotton was America’s most valuable [[export]], and it depended on slavery.',
+    life: 'Northern families bought cheap cotton clothes and Northern workers had mill jobs, all resting on the unpaid work of enslaved people. Slavery was tied to the whole country’s economy, not just the South’s.',
+    iq: 'How did the North’s factories depend on slavery in the South?',
+    ahead: 'Follow one bale through the mill and see how cotton tied the North and South together.',
+    sp: 'A Massachusetts antislavery leader criticizing powerful people in his own state.',
+    ta: 'Sumner says mill owners and planters were partners. Next, follow the cotton to see why.',
+    a: 'The path of one cotton bale from a Southern plantation to finished cloth. Click each step and watch the bale move.',
+    tb: 'The bale connects North and South. Next, see what happened to slavery as the mills grew.',
+    b: 'Census data on cotton and the number of enslaved people.' },
+];
+const GLOSS = {
+  'boston associates': ['Boston Associates', 'The rich Boston investors who built and owned the Lowell mills.'],
+  canal: ['Canal', 'A waterway dug by people to move boats or water.'],
+  railroad: ['Railroad', 'Tracks for steam-powered trains that carried people and goods quickly over land.'],
+  'market revolution': ['Market Revolution', 'The change, from about 1815 to 1860, from families making most of what they needed to working for wages and buying goods made far away.'],
+  wage: ['Wage', 'Money paid to a worker for their time or work.'],
+  artisan: ['Artisan', 'A skilled worker who makes things by hand, like a shoemaker or blacksmith.'],
+  degraded: ['Degraded', 'Made lower or worse.'],
+  blacklist: ['Blacklist', 'A list of workers that employers agree not to hire.'],
+  doffer: ['Doffer', 'A child worker who swapped full bobbins of thread for empty ones.'],
+  bobbin: ['Bobbin', 'A spool that holds thread.'],
+  loom: ['Loom', 'A machine that weaves thread into cloth.'],
+  spindle: ['Spindle', 'A rod that spins to twist and wind thread.'],
+  'speed-up': ['Speed-up', 'Running the machines faster so each worker makes more cloth.'],
+  'stretch-out': ['Stretch-out', 'Giving each worker more machines to watch.'],
+  'panic of 1837': ['Panic of 1837', 'A money crisis that closed banks and businesses and caused years of hard times.'],
+  union: ['Union', 'A group of workers who join together to ask for better pay and working conditions.'],
+  petition: ['Petition', 'A signed request asking the government to do something.'],
+  legislator: ['Legislator', 'A lawmaker.'],
+  immigrant: ['Immigrant', 'A person who moves to a new country to live.'],
+  'potato famine': ['Potato Famine', 'A disaster in Ireland from 1845 to 1852. A disease killed the potato crop, about one million people died, and many more left the country.'],
+  nativism: ['Nativism', 'Favoring people born in a country and being hostile to immigrants.'],
+  unhallowed: ['Unhallowed', 'Wicked; not holy.'],
+  lash: ['Lash', 'A whip.'],
+  'cotton gin': ['Cotton gin', 'A machine that quickly pulls the seeds out of cotton.'],
+  export: ['Export', 'A product sold to another country.'],
+};
+const HAZ = [
+  ['Shuttle', 'The flying shuttle', 'A wooden shuttle with metal tips shot back and forth across the loom many times a minute. If it jumped its track, it could fly out and hit a weaver in the face or eye. Weavers also threaded shuttles by sucking the thread through a hole with their mouths, so sharing shuttles spread sickness.'],
+  ['Belt', 'The open drive belt', 'A leather belt carried power down from the spinning shaft in the ceiling. Nothing covered it. A sleeve, an apron string or long hair caught in the belt could pull a worker into the machine.'],
+  ['Gears', 'The open gears', 'Iron gears turned on the side of the loom with no cover. Weavers were paid by the piece, so they often fixed problems while the loom kept running. One slip could crush a finger.'],
+  ['Beater', 'The beater', 'After every pass of the shuttle, the beater slammed forward to pack the thread tight. A hand reaching in to fix a broken thread could be struck.'],
+  ['Air', 'The air', 'To keep threads from breaking, rooms were kept hot and damp, often with the windows shut. Workers breathed cotton dust all day, which damaged their lungs over time. The nonstop noise damaged their hearing.'],
+];
+const POP = [['1820', 0, 'Farmland in the town of Chelmsford. No separate count.'], ['1830', 6474, 'Four years after Lowell became a town.'], ['1840', 20796, 'About 8,000 people now work in the mills.'], ['1850', 33383, 'More than five times the 1830 population.']];
+const SHOES = [['Who', 'A skilled artisan', 'A factory worker, often young'], ['The job', 'Makes the whole shoe', 'Does one step over and over'], ['Training', 'Years as an apprentice', 'Days or weeks'], ['Owns the tools', 'The worker', 'The company'], ['Sets the pace', 'The worker', 'The machine and the bell']];
+const BELLS = [
+  ['4:30', 'Wake', 4.5, 'AM · First bell', '0', 'The morning bell rings across Lowell. Workers get up in the company boarding house.', 'They are to board in one of the boarding-houses belonging to the company, and conform to the regulations of the house where they board.'],
+  ['5:00', 'Work', 5.1, 'AM · Machines start', '0', 'The mill gates close and the machines start. Overseers note who is late or missing.', 'They are not to be absent from their work without the consent of the overseer, except in cases of sickness.'],
+  ['7:00', 'Breakfast', 7.1, 'AM · Breakfast bell', '2', 'Workers rush back to the boarding house to eat. They have about 35 minutes before the bell calls them back.', ''],
+  ['12:30', 'Dinner', 12.6, 'PM · Dinner bell', 'about 7', 'Dinner was the main meal of the day. Again, about 35 minutes.', ''],
+  ['7:00', 'Done', 19.1, 'PM · Work ends', 'about 13', 'The machines stop. Workers have been at the mill about 13 hours. They do this six days a week.', ''],
+  ['10:00', 'Lock', 22.1, 'PM · Doors locked', 'about 13', 'The boarding house keeper locks the doors for the night.', 'The doors must be closed at ten o’clock in the evening, and no person admitted after that time, without some reasonable excuse.'],
+  ['Sun.', 'Church', 10, 'Sunday', '0', 'The one day off. The company expected workers to attend church.', 'The company will not employ any one who is habitually absent from public worship on the Sabbath.'],
+];
+const LOOMS = { 2: ['Mid-1830s', 'A weaver usually tends 2 looms.', '×1'], 3: ['Early 1840s', 'Owners add a third loom and run the machines faster.', '×1.5'], 4: ['Late 1840s', 'Many weavers now tend 4 looms, and the pay for each piece of cloth has been cut.', '×2'] };
+const EVENTS = [
+  ['1806', 'Commonwealth v. Pullis', 'Philadelphia shoemakers joined together and refused to work until they got higher pay. Their employers took them to court.', 'LOST', 'The court found them guilty of conspiracy. Joining together to raise wages was treated as a crime.', '#a1543f'],
+  ['1834', 'The first Lowell turn-out', 'The mills cut wages by about 15 percent. Around 800 women walked out in protest.', 'LOST', 'Within days most strikers went back to work at the lower pay.', '#a1543f'],
+  ['1836', 'The second turn-out', 'The mills raised the amount workers paid for board. About 1,500 women walked out and marched through town singing.', 'MIXED', 'Some mills dropped the increase, but strike leaders lost their jobs.', '#8a6d2a'],
+  ['1842', 'Commonwealth v. Hunt', 'Boston bootmakers in a union were charged with conspiracy, the same charge used in 1806.', 'WON', 'Chief Justice Lemuel Shaw ruled that a union is not a crime by itself, as long as it uses legal methods.', '#4d7259'],
+  ['1845', 'The ten-hour petition', 'Sarah Bagley’s Lowell Female Labor Reform Association sent petitions with thousands of signatures asking for a ten-hour workday.', 'LOST', 'The legislature’s committee refused. Massachusetts did not limit women’s hours to ten until 1874.', '#a1543f'],
+];
+const IMM = [['1820', 8385, 'The first year the U.S. counted arrivals.'], ['1825', 10199, 'The Erie Canal opens this year.'], ['1830', 23322, 'Most newcomers come from Ireland, Britain and Germany.'], ['1835', 45374, 'One year after a mob burned a Catholic convent school near Boston.'], ['1840', 84066, 'Ten times as many as in 1820.'], ['1845', 114371, 'Potato blight strikes Ireland. Irish arrivals will soar over the next ten years.']];
+const STEPS = [
+  ['South', 'Grown in the South', 'Enslaved people in places like Mississippi and Alabama planted and picked the cotton. Merchants shipped the bales to Boston, and the railroad carried them to Lowell.'],
+  ['Store', 'Into the storehouse', 'Bales waited in brick storehouses beside the mills. Lowell’s mills used millions of pounds of southern cotton every year.'],
+  ['Carding', 'Picking and carding', 'On the ground floor, machines beat the bales apart and combed the fibers into loose, soft ropes.'],
+  ['Spinning', 'Spinning', 'Workers tended spinning frames that twisted the fibers into thread on thousands of spindles.'],
+  ['Weaving', 'Weaving', 'On the top floors, weavers ran power looms that turned the thread into cloth.'],
+  ['Shipped', 'Cloth leaves Lowell', 'Finished cloth was sold across the country. Some mills made a rough, cheap cloth that planters bought to clothe the people they enslaved.'],
+];
+const INK = '#22262e', PAPER = '#fbf9f4';
+
+
+const WKEY = 'cpa310-lowell-worker';
+const MET = [['sav', 'Savings', '#c9a54e'], ['hea', 'Health', '#c2715a'], ['ind', 'Independence', '#6b8fb3'], ['rep', 'Company record', '#5f8f96'], ['fam', 'Family back home', '#7a9e86']];
+const AGES = [[15, { hea: 5 }], [17, {}], [19, { hea: -5, ind: 5 }]];
+const HOMES = [['A rocky hill farm in New Hampshire', 'The farm is deep in debt.', { fam: 5 }], ['A dairy farm in Vermont', 'Your family is close, but money is tight.', { fam: 10 }], ['A fishing village in Maine', 'Your father is often away at sea.', { ind: 10 }]];
+const REASONS = [['Help pay off the family farm', { fam: 10 }], ['Save money for school', { sav: 10 }], ['Live on my own for once', { ind: 10 }], ['Help my brother pay for college', { fam: 5, ind: -5 }]];
+const WCOL = ['#6b8fb3', '#c2715a', '#5f8f96', '#8f7fae'];
+const BADGES = [
+  ['first', 'First Paycheck', 'Finish Stop 1.'], ['pen', 'Pen of the Mill', 'Write for the Lowell Offering.'], ['rule', 'Rule Breaker', 'Break the ten o’clock rule.'],
+  ['loom', 'Three-Loom Weaver', 'Take on a third loom.'], ['ten', 'Ten-Hour Champion', 'Support the ten-hour petition.'], ['black', 'Blacklisted', 'Get fired for speaking up.'],
+  ['neighbor', 'Good Neighbor', 'Help a newcomer at the mill.'], ['abol', 'Abolitionist', 'Sign an antislavery petition.'], ['free', 'Free Produce', 'Join the free-labor boycott.'],
+  ['bell', 'Bell Ringer', 'Click all 7 bells at Stop 3.'], ['close', 'Close Reader', 'Reveal all 5 timeline results at Stop 5.'], ['words', 'Word Collector', 'Open 10 vocab words.'], ['hist', 'Historian', 'Finish all 7 stops.'],
+];
+const YEARS = [1836, 1837, 1838, 1840, 1845, 1847, 1848];
+const STORY = [
+  { title: 'Your first payday', scen: '{name}, you made it to Lowell. After your first week at the looms, you get paid. After paying for your room and meals, you have $2.25 left. What will you do with your wages?', opts: [
+    { t: 'Send most of it home to your family', d: { fam: 15, sav: -15, ind: -5 }, out: 'Your family uses the money to pay part of the farm debt. You have little left over, but they are proud of you. Many mill workers sent money home.', diary: 'Sent $2 home today. Mother will be glad. I kept a few pennies for thread.' },
+    { t: 'Save it at the Lowell bank', d: { sav: 20, ind: 5 }, out: 'Your savings start to grow. Many mill women opened accounts at the Lowell Institution for Savings. For many, it was the first money they had ever controlled.', diary: 'Opened my own bank account today. My own name in the book!' },
+    { t: 'Spend some on books, a lecture ticket and a new bonnet', d: { ind: 10, sav: -10, fam: -5 }, out: 'You enjoy city life. Your family wonders why you send so little home. Some critics complained that mill girls were spending too much on fancy things.', diary: 'Bought a new bonnet and a ticket to a lecture. Lowell is nothing like the farm.' }] },
+  { title: 'The wheel stops', scen: 'Ice jams the canal, and the water wheel stops. The mill closes for two weeks. No work means no pay, but you still owe the boarding house. What do you do?', opts: [
+    { t: 'Wait it out in the boarding house', d: { sav: -20, rep: 5 }, out: 'You spend your savings on room and board while you wait. When the wheel turns again, the overseer is glad you stayed. Your pay depended on a machine you did not control.', diary: 'Two weeks with no work. My savings are almost gone just paying for board.' },
+    { t: 'Sew shirts for a clothing shop, paid by the piece', d: { sav: -5, hea: -5, ind: 5 }, out: 'You sew by candlelight for pennies a shirt. Skilled tailors are losing their jobs to cheap piecework like this. You learn how little hand work now pays.', diary: 'Sewed eleven shirts this week. My fingers ache, and I earned less than a dollar.' },
+    { t: 'Go home to help on the farm', d: { fam: 10, sav: -10, rep: -5 }, out: 'Your family is happy to see you. But when you come back, another worker has your looms, and the overseer is annoyed. Without the mill, there is no pay.', diary: 'Home again for a while. When I get back, I may have to beg for my place.' }] },
+  { title: 'The ten o’clock rule', scen: 'A famous speaker is giving a lecture in town tonight. It ends at 10:30, but the boarding house doors lock at 10:00. Breaking the rules could get you reported to the company.', opts: [
+    { t: 'Skip the lecture and follow the rules', d: { rep: 10, ind: -5 }, out: 'The housekeeper reports that you are a “steady girl.” Your record with the company stays clean. But you missed something you wanted to do.', diary: 'Stayed in tonight. My roommate told me all about the lecture. I wish I had gone.' },
+    { t: 'Go, and sneak back in late', d: { ind: 10, rep: -10 }, badge: 'rule', out: 'The lecture is wonderful. But the housekeeper catches you coming in late and reports you. Now the company has a mark against your name.', diary: 'Climbed in the back window at half past ten. It was worth it, but the housekeeper saw me.' },
+    { t: 'Write a story for the Lowell Offering instead', d: { ind: 5, rep: 5 }, badge: 'pen', out: 'Your story is printed in the Lowell Offering. The owners like the magazine because it makes mill life look good, so they are pleased with you too.', diary: 'My story was printed! I left out the parts about the noise and the long hours.' }] },
+  { title: 'A third loom', scen: 'Your overseer offers you a third loom. You would make more cloth, but the company has cut the pay for each piece. He gets a bonus when his room makes more cloth.', opts: [
+    { t: 'Take the third loom', d: { sav: 25, hea: -15, rep: 10 }, badge: 'loom', out: 'You earn more, but you are on your feet running between machines all day. By night your back aches, and you cough from the lint. Your overseer gets his bonus.', diary: 'Three looms now. I can hardly keep up. I cough every night.' },
+    { t: 'Say no', d: { sav: -5, rep: -15 }, out: 'The overseer gives the loom to someone else and marks you as “difficult.” Your pay stays the same while prices keep rising.', diary: 'Said no to the third loom. The overseer has not spoken to me since.' },
+    { t: 'Ask for higher pay first', d: { sav: 20, hea: -15, rep: -10, ind: 5 }, badge: 'loom', out: 'He laughs. “There are girls lined up at the gate who would take it.” You end up taking the third loom anyway, at the lower rate.', diary: 'Asked for more pay. He laughed. I took the loom anyway.' }] },
+  { title: 'The ten-hour petition', scen: 'Sarah Bagley’s group asks you to sign a petition for a ten-hour workday. They also need workers to speak to lawmakers at the State House in Boston. The company is watching who joins.', opts: [
+    { t: 'Speak to lawmakers at the State House', d: { ind: 20, rep: -25 }, badge: 'ten', out: 'You tell lawmakers about your 13-hour days. They thank you, but they refuse to limit hours. Back in Lowell, your overseer watches you closely.', outF: 'You tell lawmakers about your 13-hour days. They refuse to act. When you get back, the company fires you and puts your name on a blacklist. No mill in Lowell will hire you now.', diary: 'Spoke at the State House today. My knees shook, but I said it all.', diaryF: 'I have been dismissed. My paper says I am not to be hired again.' },
+    { t: 'Sign the petition but stay quiet', d: { ind: 10, rep: -5 }, badge: 'ten', out: 'Your name joins many others. The lawmakers still say no, but workers keep pushing. Massachusetts finally limits women’s workdays to ten hours in 1874.', diary: 'Signed my name today with many others. We will keep at it.' },
+    { t: 'Don’t sign', d: { rep: 10, ind: -10 }, out: 'You keep your job, and your record stays clean. Many workers stayed out of it for the same reason: they could not risk losing their pay.', diary: 'I did not sign. I cannot lose this job. But I felt ashamed when the others went.' }] },
+  { title: 'Newcomers at the mill', scen: 'Pay is falling. The company is hiring Irish women, who often accept lower wages. Your overseer asks you to train a new weaver named Bridget, who just arrived from Ireland.', opts: [
+    { t: 'Train Bridget and help her settle in', d: { ind: 5, rep: 5 }, badge: 'neighbor', out: 'Bridget learns fast. She tells you her family fled the famine in Ireland. By the 1850s, Irish women like her made up a large share of Lowell’s mill workers.', diary: 'Bridget learned the looms in three days. Her family lost everything in the famine.' },
+    { t: 'Join the workers who say the Irish are ruining the mills', d: { ind: -5 }, out: 'Blaming newcomers is called nativism. It was common, but it did not raise anyone’s pay. The owners were the ones cutting wages.', diary: 'The others say the Irish are to blame for the pay cuts. I am not so sure.' },
+    { t: 'Quit and go home, like many Yankee workers are doing', d: { fam: 10, sav: -5 }, out: 'You leave Lowell, like many New England women did in the late 1840s. Irish workers take the empty places, often for lower pay.', diary: 'Packed my trunk today. Lowell is not what it was.' }] },
+  { title: 'The cotton question', scen: 'You have read Charles Sumner’s words. Every thread you weave was grown and picked by enslaved people in the South. What will you do about it?', note: 'You could choose. The enslaved people who grew the cotton had no choice at all.', opts: [
+    { t: 'Sign an antislavery petition to Congress', d: { ind: 10, rep: -5 }, badge: 'abol', out: 'You join thousands of Northern women who sent antislavery petitions to Congress. Lawmakers argued about them, but slavery continued.', diary: 'Signed the antislavery petition at church today. Some of the girls would not.' },
+    { t: 'Buy only “free labor” goods made without slave labor', d: { sav: -15, ind: 5 }, badge: 'free', out: 'Free-labor goods cost more and were hard to find. Only a small number of people joined this boycott, and the mills kept buying Southern cotton.', diary: 'Paid twice the price for free-labor cloth. It is a small thing, but it is something.' },
+    { t: 'Do nothing. It isn’t your problem.', d: {}, out: 'Most Northerners made the same choice. The mills kept running on slave-grown cotton, and Northern banks and merchants kept profiting.', diary: 'The girls talked about slavery at supper. I kept quiet and went to bed.' }] },
+];
+const STORY6F = { title: 'Blacklisted', scen: 'You have been fired and blacklisted. No Lowell mill will hire you. Meanwhile, thousands of Irish immigrants are arriving, all looking for work.', opts: [
+  { t: 'Go home to the farm', d: { fam: 15, sav: -10, ind: -10 }, out: 'Your family takes you back. Farm life is hard, but it is safe. Many blacklisted women never worked in a mill again.', diary: 'Home on the farm. Father says I did right. I am not sorry.' },
+  { t: 'Move to a mill town in New Hampshire where no one knows you', d: { ind: 5, hea: -5, sav: -5 }, out: 'You find work in a new mill under a different overseer. The bells, the hours and the rules are just the same as in Lowell.', diary: 'New town, same bell, same looms.' },
+  { t: 'Look for work as a servant in Boston', d: { sav: 5, ind: -10 }, out: 'You find work cleaning a family’s house. Many Irish women are competing for the same jobs, and some ads say “No Irish need apply.” Being born in America helps you get hired.', diary: 'Found a place as a servant. The lady of the house says she would never hire Irish.' }] };
+
+class Component extends DCLogic {
+  state = { wk: this.loadWk(), creating: false, pend: null, cd: { name: '', age: 1, home: 0, reason: 0, color: 0 }, pick: null, outcome: null, ending: false, journal: false, toast: null, done: this.load(), stop: null, welcome: true, growT: 0, growSnap: false, gp: 0, intro: false, term: null, loomClose: false, hz: 0, y1: 2, gate: true, m2: 0, b3: 0, looms: 2, sound: false, e4: 0, rev4: {}, b5: 5, st7: 0 };
+
+  loadWk() { try { const w = JSON.parse(localStorage.getItem(WKEY)); if (w && w.name && Array.isArray(w.ch)) return w; } catch (e) {} return null; }
+  saveWk(wk) { try { if (wk) localStorage.setItem(WKEY, JSON.stringify(wk)); else localStorage.removeItem(WKEY); } catch (e) {} this.setState({ wk }); }
+  markSeen(k, v) { const wk = this.state.wk; if (!wk) return; const sn = Object.assign({ v: [], b: [], r: [] }, wk.seen); if (sn[k].includes(v)) return; sn[k] = sn[k].concat([v]); this.saveWk(Object.assign({}, wk, { seen: sn })); }
+  optsFor(i, fired) { return i === 5 && fired ? STORY6F : STORY[i]; }
+  calc(wk, done) {
+    const m = { sav: 0, hea: 85, ind: 30, rep: 50, fam: 50 }, add = (d) => Object.keys(d || {}).forEach((k) => { m[k] += d[k]; });
+    add(AGES[wk.age][1]); add(HOMES[wk.home][2]); add(REASONS[wk.reason][1]);
+    let fired = false; const log = [], earned = new Set();
+    for (let i = 0; i < N; i++) {
+      const c = wk.ch[i]; if (c == null) continue;
+      const S = this.optsFor(i, fired), o = S.opts[c];
+      if (!done[i]) { log.push({ i, S, o, pending: true }); continue; }
+      const before = Object.assign({}, m);
+      m.sav += 30; m.hea -= 3; add(o.d);
+      let f = false; if (i === 4 && c === 0 && m.rep < 35) { fired = true; f = true; earned.add('black'); }
+      if (o.badge) earned.add(o.badge);
+      Object.keys(m).forEach((k) => { m[k] = k === 'sav' ? Math.max(0, m[k]) : Math.max(0, Math.min(100, m[k])); });
+      log.push({ i, S, o, f, before, after: Object.assign({}, m) });
+    }
+    if (done[0]) earned.add('first'); if (done.every(Boolean)) earned.add('hist');
+    const sn = Object.assign({ v: [], b: [], r: [] }, wk.seen);
+    if (sn.b.length >= 7) earned.add('bell'); if (sn.r.length >= 5) earned.add('close'); if (sn.v.length >= 10) earned.add('words');
+    return { m, fired, log, earned };
+  }
+  componentDidUpdate() {
+    const wk = this.state.wk; if (!wk) { this._bset = null; return; }
+    const e = this.calc(wk, this.state.done).earned;
+    if (this._bset) { const nw = [...e].filter((b) => !this._bset.has(b)); if (nw.length) { const b = BADGES.find((x) => x[0] === nw[nw.length - 1]); clearTimeout(this._tt); this.setState({ toast: b[1] }); this._tt = setTimeout(() => this.setState({ toast: null }), 3200); } }
+    this._bset = e;
+  }
+  load() {
+    try { const d = JSON.parse(localStorage.getItem(KEY)); if (Array.isArray(d) && d.length === N) return d.map(Boolean); } catch (e) {}
+    return new Array(N).fill(false);
+  }
+  current() { const i = this.state.done.indexOf(false); return i < 0 ? N : i; }
+  componentDidMount() {
+    this.onSel = (e) => this.openStop(e.detail.index);
+    this.onHz = (e) => this.setState({ hz: e.detail.index, loomClose: true });
+    window.addEventListener('lowell:hazard', this.onHz);
+    this.onReady = () => { this._last = null; this.sync(); };
+    this.onGrow = (e) => { const g = e.detail.g, q = g >= 1 ? 999 : Math.floor(g * 60); if (q !== this._gq) { this._gq = q; this.setState({ gp: g }); } };
+    window.addEventListener('lowell:grow', this.onGrow);
+    this.onKey = (e) => { if (e.key !== 'Escape' || this.state.welcome) return; if (this.state.intro) this.setState({ intro: false }); else if (this.state.stop != null) this.closePanel(); };
+    this.onResize = () => { this._last = null; this.sync(); };
+    window.addEventListener('lowell:select', this.onSel);
+    window.addEventListener('lowell:ready', this.onReady);
+    window.addEventListener('keydown', this.onKey);
+    window.addEventListener('resize', this.onResize);
+    this._mounted = true; this.sync();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('lowell:select', this.onSel);
+    window.removeEventListener('lowell:ready', this.onReady);
+    window.removeEventListener('lowell:grow', this.onGrow);
+    window.removeEventListener('lowell:hazard', this.onHz);
+    window.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('resize', this.onResize);
+    this.stopSound();
+  }
+  sync() {
+    const s = this.state, st = s.stop, focus = typeof st === 'number' ? st : null;
+    const W = window.innerWidth, open = st != null;
+    const detail = {
+      done: s.done, current: this.current(), focus, closing: st === 'close',
+      cut: focus === 1 || focus === 3 || (focus === 6 && s.st7 >= 2 && s.st7 <= 4),
+      time: focus === 2 ? BELLS[s.b3][2] : 10, sunday: focus === 2 && s.b3 === 6,
+      loomClose: focus === 3 && !!s.loomClose, hz: s.hz,
+      level: focus === 6 ? [4, 4, 0, 2, 4, 4][s.st7] : 4,
+      gate: focus === 1 ? s.gate : true, looms: s.looms, bale: focus === 6 ? s.st7 : null,
+      panelX: s.welcome ? (W >= 820 ? -(Math.min(480, W - 32) + 16) : 0) : (open && W >= 820 ? Math.min(open && st === 'close' ? 620 : 560, W - 32) + 16 : 0), panelY: 0,
+      growth: s.growT, growSnap: s.growSnap, intro: s.welcome,
+    };
+    const key = JSON.stringify(detail);
+    if (key !== this._lastDone) {
+      const doneKey = JSON.stringify(s.done);
+      if (doneKey !== this._savedDone) { this._savedDone = doneKey; try { localStorage.setItem(KEY, doneKey); } catch (e) {} }
+      this._lastDone = key; window.__lowellState = detail;
+      window.dispatchEvent(new CustomEvent('lowell:state', { detail }));
+    }
+  }
+  openStop(i) {
+    if (i > this.current() && !this.state.done[i]) return;
+    if (i !== 3) this.stopSound();
+    if (!this.state.wk) { this.setState({ creating: true, pend: i, welcome: false }); return; }
+    this.seen = this.seen || new Set();
+    const intro = !this.seen.has(i); this.seen.add(i);
+    this.setState({ stop: i, intro, loomClose: false, term: null, pick: null });
+  }
+  closePanel() { this.stopSound(); this.setState({ stop: null, intro: false, loomClose: false, term: null }); }
+  segs(text) {
+    const out = [], re = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g; let m, i = 0;
+    const plain = (t) => ({ t, fw: 'inherit', bb: '0', bg: 'transparent', cur: 'inherit', pick: null });
+    text = text || '';
+    while ((m = re.exec(text))) {
+      if (m.index > i) out.push(plain(text.slice(i, m.index)));
+      const key = (m[2] || m[1]).toLowerCase(), on = this.state.term === key;
+      out.push({ t: m[1], fw: '800', bb: '2px dotted #22262e', bg: on ? '#e8d9ae' : 'transparent', cur: 'pointer', pick: () => { if (!on) this.markSeen('v', key); this.setState({ term: on ? null : key }); } });
+      i = re.lastIndex;
+    }
+    if (i < text.length) out.push(plain(text.slice(i)));
+    return out;
+  }
+  loomBuffer(ctx, n) {
+    const sr = ctx.sampleRate, len = sr * 2, buf = ctx.createBuffer(1, len, sr), d = buf.getChannelData(0);
+    const looms = 24 + n * 8, rate = 1.8 + (n - 2) * 0.45, L = Math.floor(sr * 0.02), dec = sr * 0.004;
+    for (let l = 0; l < looms; l++) {
+      const per = sr / (rate * (0.9 + Math.random() * 0.2)); let t0 = Math.random() * per;
+      while (t0 < len) { const a = 0.25 + Math.random() * 0.3, s0 = t0 | 0; for (let i = 0; i < L && s0 + i < len; i++) d[s0 + i] += (Math.random() * 2 - 1) * a * Math.exp(-i / dec); t0 += per; }
+    }
+    let m = 0;
+    for (let i = 0; i < len; i++) { const t = i / sr; d[i] = d[i] * 0.35 + Math.sin(6.2832 * 58 * t) * 0.07 + Math.sin(6.2832 * 116 * t) * 0.03 + (Math.random() * 2 - 1) * 0.05; m = Math.max(m, Math.abs(d[i])); }
+    for (let i = 0; i < len; i++) d[i] *= 0.8 / m;
+    return buf;
+  }
+  startSound(n) {
+    try {
+      const ctx = this.ac || (this.ac = new (window.AudioContext || window.webkitAudioContext)());
+      ctx.resume(); this.stopSound(true);
+      const src = ctx.createBufferSource(); src.buffer = this.loomBuffer(ctx, n); src.loop = true;
+      const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 2600;
+      const g = ctx.createGain(); g.gain.value = 0.3;
+      src.connect(f); f.connect(g); g.connect(ctx.destination); src.start(); this.src = src;
+    } catch (e) {}
+  }
+  stopSound(keep) {
+    if (this.src) { try { this.src.stop(); } catch (e) {} this.src = null; }
+    if (!keep && this.state.sound) this.setState({ sound: false });
+  }
+  sel(on, accent) { return on ? { bg: INK, fg: PAPER } : { bg: accent || PAPER, fg: INK }; }
+
+  renderVals() {
+    const s = this.state, set = (o) => this.setState(o);
+    if (this._mounted) setTimeout(() => this.sync(), 0);
+    const cur = this.current(), st = s.stop, isStop = typeof st === 'number';
+    const D = STOPS[isStop ? st : 0], nx = STOPS[Math.min(cur, N - 1)];
+    const wk = s.wk, W = wk ? this.calc(wk, s.done) : null;
+    const needChoice = !!(wk && isStop && !s.intro && !s.done[st] && wk.ch[st] == null);
+    const cd = s.cd, setCd = (o) => set({ cd: Object.assign({}, cd, o) });
+    const optBtn = (on, col) => on ? { bg: INK, fg: PAPER, bd: INK } : { bg: PAPER, fg: INK, bd: col || '#a9a497' };
+    const fill = (t) => (t || '').split('{name}').join(wk ? wk.name : 'Worker');
+    const fmtD = (k, v) => (v > 0 ? '+' : '−') + (k === 'sav' ? '$' + Math.abs(v) : Math.abs(v)) + ' ' + MET.find((x) => x[0] === k)[1];
+    const wv = {};
+    if (wk) {
+      const m = W.m;
+      wv.hasWk = true;
+      wv.wkV = { name: wk.name, initial: wk.name.trim().charAt(0).toUpperCase(), color: WCOL[wk.color], sub: 'Age ' + AGES[wk.age][0] + ' · ' + HOMES[wk.home][0].replace(/^A /, ''), goal: 'Goal: ' + REASONS[wk.reason][0], badgeCount: W.earned.size + ' / ' + BADGES.length, fired: W.fired };
+      wv.meters = MET.map(([k, label, col]) => ({ label, col, val: k === 'sav' ? '$' + m[k] : String(m[k]), w: Math.min(100, k === 'sav' ? m[k] / 2.5 : m[k]) + '%' }));
+      if (needChoice) {
+        const S = this.optsFor(st, W.fired);
+        wv.ch = { num: st + 1, year: YEARS[st], title: S.title, scen: fill(S.scen), opts: S.opts.map((o, i) => Object.assign({ t: o.t, letter: 'ABC'[i], pick: () => set({ pick: i }) }, optBtn(s.pick === i, STOPS[st].color))) };
+      }
+      const lg = isStop ? W.log.find((x) => x.i === st) : null;
+      wv.chosen = lg ? { has: true, t: lg.o.t } : { has: false, t: '' };
+      if (s.outcome != null) {
+        const L = W.log.find((x) => x.i === s.outcome && !x.pending);
+        if (L) {
+          const dl = MET.map(([k]) => [k, L.after[k] - L.before[k]]).filter(([, v]) => v !== 0);
+          const S = L.S;
+          wv.oc = { num: L.i + 1, year: YEARS[L.i], title: S.title, choiceT: L.o.t, out: L.f ? L.o.outF : L.o.out, diary: L.f ? L.o.diaryF : L.o.diary, note: S.note || '', hasNote: !!S.note,
+            deltas: dl.map(([k, v]) => ({ t: fmtD(k, v), bg: v > 0 ? '#cfe0d4' : '#f0d8cf' })), btn: L.i === N - 1 ? 'See how the story ends →' : 'Back to the map →', fired: !!L.f };
+        }
+      }
+      if (s.ending) {
+        const m2 = W.m, n = wk.name, Ls = [];
+        Ls.push(m2.sav >= 150 ? n + ' saved $' + m2.sav + ', more money than most women of the time ever controlled.' : m2.sav >= 60 ? n + ' saved $' + m2.sav + '. It was not a fortune, but it was ' + n + '’s own.' : n + ' saved almost nothing. Most of the wages went to board, family or hard times.');
+        if (W.fired) Ls.push('After being blacklisted for speaking up, ' + n + ' never worked in a Lowell mill again.');
+        Ls.push(m2.hea < 50 ? 'Years of hot, dusty mill air left ' + n + ' with a cough that never fully went away. Many mill women went home sick.' : m2.hea >= 70 ? n + '’s health held up better than most.' : 'The long hours wore ' + n + ' down, but not as badly as some.');
+        if (m2.fam >= 70) Ls.push('The money ' + n + ' sent home helped the family keep going.'); else if (m2.fam < 40) Ls.push(n + ' grew distant from the family back home.');
+        Ls.push(m2.ind >= 60 ? n + ' learned to speak up. Many former mill women became teachers, writers and reformers.' : m2.ind < 30 ? n + ' kept quiet and kept working, like most workers did.' : n + ' gained some independence, but the company still made most of the rules.');
+        wv.en = { name: n, lines: Ls.map((t) => ({ t })) };
+      }
+      wv.jr = { entries: W.log.filter((x) => !x.pending).map((x) => ({ n: x.i + 1, year: YEARS[x.i], title: x.S.title, diary: x.f ? x.o.diaryF : x.o.diary })),
+        badges: BADGES.map(([id, name, desc]) => { const on = W.earned.has(id); return { name, desc, bg: on ? '#e8d9ae' : '#ebe6db', fg: on ? INK : '#8a877f', bd: on ? INK : '#c9c3b6', mark: on ? '★' : '☆' }; }) };
+      wv.jr.hasEntries = wv.jr.entries.length > 0; wv.jr.noEntries = !wv.jr.hasEntries;
+    }
+
+    const r = {
+      pt0: st === 0, pt1: st === 1, pt2: st === 2, pt3: st === 3, pt4: st === 4, pt6: st === 6,
+
+      hasWk: !!wv.hasWk, wkV: wv.wkV || { name: '', initial: '', color: INK, sub: '', goal: '', badgeCount: '', fired: false }, meters: wv.meters || [],
+      showWkCard: !!wk && st == null && !s.welcome && !s.creating && s.outcome == null && !s.ending,
+      showCreate: !!s.creating,
+      cd: { name: cd.name },
+      cdAges: AGES.map((a, i) => Object.assign({ t: String(a[0]), pick: () => setCd({ age: i }) }, optBtn(cd.age === i))),
+      cdHomes: HOMES.map((a, i) => Object.assign({ t: a[0], sub: a[1], pick: () => setCd({ home: i }) }, optBtn(cd.home === i))),
+      cdReasons: REASONS.map((a, i) => Object.assign({ t: a[0], pick: () => setCd({ reason: i }) }, optBtn(cd.reason === i))),
+      cdColors: WCOL.map((c, i) => ({ c, bd: cd.color === i ? INK : 'transparent', pick: () => setCd({ color: i }) })),
+      cdInitial: (cd.name.trim().charAt(0) || '?').toUpperCase(), cdColor: WCOL[cd.color],
+      setName: (e) => setCd({ name: String(e.target.value || '').slice(0, 20) }),
+      canBegin: cd.name.trim().length > 0, cantBegin: cd.name.trim().length === 0,
+      beginWorker: () => { if (!cd.name.trim()) return; const p = s.pend; this.saveWk({ name: cd.name.trim(), age: cd.age, home: cd.home, reason: cd.reason, color: cd.color, ch: new Array(N).fill(null), seen: { v: [], b: [], r: [] } }); set({ creating: false, pend: null }); if (p != null) setTimeout(() => this.openStop(p), 0); },
+      showChoice: needChoice, ch: wv.ch || { num: 1, year: 1836, title: '', scen: '', opts: [] },
+      hasPick: needChoice && s.pick != null, noPick: !(needChoice && s.pick != null),
+      lockChoice: () => { if (s.pick == null || !wk) return; const c = wk.ch.slice(); c[st] = s.pick; this.saveWk(Object.assign({}, wk, { ch: c })); set({ pick: null }); },
+      chosen: wv.chosen || { has: false, t: '' },
+      showOutcome: !!wv.oc, oc: wv.oc || { num: 1, year: 1836, title: '', choiceT: '', out: '', diary: '', note: '', hasNote: false, deltas: [], btn: '', fired: false },
+      closeOutcome: () => { const last = s.outcome === N - 1; set({ outcome: null, ending: last, stop: null }); },
+      showEnding: !!wv.en, en: wv.en || { name: '', lines: [] },
+      closeEnding: () => set({ ending: false, stop: 'close' }),
+      showJournal: !!(s.journal && wk), jr: wv.jr || { entries: [], badges: [], hasEntries: false, noEntries: true },
+      openJournal: () => set({ journal: true }), closeJournal: () => set({ journal: false }),
+      hasToast: !!s.toast, toastName: s.toast || '',
+      canReset: s.done.some(Boolean) || !!s.wk, askReset: !!s.askReset, notAskReset: !s.askReset,
+      resetNote: (s.wk ? s.wk.name + ' · ' : '') + s.done.filter(Boolean).length + ' of 7 stops done',
+      startReset: () => set({ askReset: true }), cancelReset: () => set({ askReset: false }),
+      doReset: () => { this.stopSound(); this.seen = new Set(); this._bset = null; this.saveWk(null); set({ askReset: false, done: new Array(N).fill(false), stop: null, intro: false, term: null, loomClose: false, outcome: null, ending: false, journal: false, pick: null, creating: false, welcome: true, growT: 0, growSnap: true, gp: 0, cd: { name: '', age: 1, home: 0, reason: 0, color: 0 } }); },
+      showWelcome: !!s.welcome,
+      w: (() => {
+        const KF = [[0, 1821], [0.1, 1822], [0.25, 1823], [0.4, 1826], [0.55, 1831], [0.7, 1835], [0.85, 1840], [1, 1845]];
+        const CAP = [[1821, 'East Chelmsford: a small farming village beside Pawtucket Falls.'], [1822, 'Rich Boston investors buy the land. Irish workers begin digging canals by hand.'], [1823, 'The first mill starts running, powered by the river.'], [1826, 'The new town is named Lowell. Boarding houses go up for mill workers.'], [1831, 'Irish families build St. Patrick’s Church in the Acre.'], [1835, 'The Boston & Lowell Railroad opens.'], [1840, 'About 20,000 people now live in Lowell.'], [1845, 'Lowell is one of the biggest factory cities in America.']];
+        const g = Math.min(1, Math.max(0, s.gp)); let y = 1821;
+        for (let i = 1; i < KF.length; i++) if (g <= KF[i][0]) { const [g0, y0] = KF[i - 1], [g1, y1] = KF[i]; y = Math.floor(y0 + (y1 - y0) * (g - g0) / (g1 - g0)); break; }
+        let cap = CAP[0][1]; CAP.forEach(([yy, c]) => { if (y >= yy) cap = c; });
+        return { year: String(y), cap, bar: (g * 100).toFixed(1) + '%', skip: s.done.some(Boolean) ? 'Skip to the map' : 'Skip the intro' };
+      })(),
+      wPre: s.growT === 0, wGrowing: s.growT === 1 && s.gp < 0.999, wDone: s.growT === 1 && s.gp >= 0.999, wNotDone: !(s.growT === 1 && s.gp >= 0.999),
+      watchGrow: () => set({ growT: 1, growSnap: false }),
+      startJourney: () => set({ welcome: false, creating: !s.wk }),
+      skipIntro: () => set({ welcome: false, creating: !s.wk, growT: 1, growSnap: true, gp: 1 }),
+      replayGrow: () => { set({ growT: 0, growSnap: true, gp: 0 }); setTimeout(() => this.setState({ growT: 1, growSnap: false }), 500); },
+      showHow: () => { this.stopSound(); set({ welcome: true, stop: null, intro: false }); },
+      noPanel: st == null && !s.welcome && !s.creating, isStop: isStop && !s.intro && !needChoice, showIntro: isStop && !!s.intro, isClosing: st === 'close',
+      ctx: CTX[isStop ? st : 0],
+      ctxS: { here: this.segs(CTX[isStop ? st : 0].here), local: this.segs(CTX[isStop ? st : 0].local), big: this.segs(CTX[isStop ? st : 0].big), life: this.segs(CTX[isStop ? st : 0].life) },
+      spS: { intro: this.segs(D.sp.intro), quote: this.segs(D.sp.quote) },
+      bS: this.segs(D.b.body),
+      hasTerm: !!(s.term && GLOSS[s.term]), termW: s.term && GLOSS[s.term] ? GLOSS[s.term][0] : '', termD: s.term && GLOSS[s.term] ? GLOSS[s.term][1] : '',
+      closeTerm: () => set({ term: null }),
+      hz: HAZ.map((x, i) => Object.assign({ n: i + 1, short: x[0], pick: () => set({ hz: i, loomClose: true }) }, this.sel(s.loomClose && s.hz === i, s.loomClose ? '#f0d8cf' : PAPER))),
+      c4: { btn: s.loomClose ? 'Zoom back out to the room' : 'Zoom in on one loom', bBg: s.loomClose ? PAPER : '#5f8f96', title: (s.hz + 1) + '. ' + HAZ[s.hz][1], text: HAZ[s.hz][2] },
+      toggleClose: () => set({ loomClose: !s.loomClose }),
+      startStation: () => set({ intro: false, term: null }),
+      rereadIntro: () => set({ intro: true }),
+      doneCount: s.done.filter(Boolean).length, anyDone: s.done.some(Boolean),
+      track: STOPS.map((x, i) => {
+        const d = s.done[i], c = i === cur, locked = !d && i > cur;
+        return { title: locked ? 'Locked' : (i + 1) + '. ' + x.place, mark: d ? '✓' : String(i + 1), bg: d ? x.color : (c ? PAPER : '#e9e3d6'), border: d || st === i ? INK : (c ? x.color : '#c9c3b6'), fg: locked ? '#9a978f' : INK, cursor: locked ? 'not-allowed' : 'pointer', pick: () => this.openStop(i) };
+      }),
+      reset: () => { this.stopSound(); this.seen = new Set(); set({ term: null, loomClose: false, outcome: null, ending: false, journal: false, pick: null }); this.saveWk(null); this._bset = null; set({ done: new Array(N).fill(false), stop: null }); },
+      showNext: st == null && cur < N, allDone: st == null && cur >= N,
+      next: { num: Math.min(cur, N - 1) + 1, place: nx.place, color: nx.color, kicker: cur === 0 ? 'START HERE' : 'NEXT STOP' },
+      goNext: () => { if (cur < N) this.openStop(cur); else set({ stop: 'close' }); },
+      nextLabel: cur < N ? 'Next: Stop ' + (cur + 1) + ' →' : 'Closing Task →',
+      openClosing: () => set({ stop: 'close' }),
+      overview: () => { this.stopSound(); set({ stop: null }); this._last = null; window.dispatchEvent(new CustomEvent('lowell:state', { detail: Object.assign({}, window.__lowellState, { focus: null, _t: Date.now() }) })); },
+      closePanel: () => this.closePanel(),
+      s: { num: (isStop ? st : 0) + 1, placeCaps: D.place.toUpperCase(), station: D.station, q: D.q, color: D.color, aTitle: D.aTitle, clue: D.clue },
+      sp: Object.assign({ hasQuote: !D.sp.missing, missing: !!D.sp.missing, kicker: D.sp.missing ? 'A MISSING VOICE' : 'IN THEIR OWN WORDS', kickerColor: D.sp.missing ? '#8f7fae' : '#5a5f6b', quote: '', src: '' }, D.sp),
+      portraits: STOPS.map((x, i) => ({ num: i + 1, display: i === st && !x.sp.missing ? 'block' : 'none', ph: 'Illustrated portrait of ' + x.sp.name, src: './assets/portraits/' + ['dickens', 'tocqueville', 'robinson', 'larcom', 'bagley', '', 'sumner'][i] + '.jpg' })),
+      hideImg: (e) => { e.currentTarget.style.display = 'none'; },
+      b: Object.assign({ hasImg: !!D.b.img, hasIntro: !!D.b.intro, hasAd: !!D.b.ad, hasLines: !!D.b.lines, hasRows: !!D.b.rows, hasBody: !!D.b.body, hasCheck: !!D.b.check }, D.b, {
+        lines: (D.b.lines || []).map(([t, hi]) => ({ t, c: hi ? '#a9c7b2' : '#f2ede3' })),
+        rows: (D.b.rows || []).map(([y, a, b]) => ({ y, a, b })),
+      }),
+      qs: [{ n: 'Intro', t: CTX[isStop ? st : 0].iq }].concat(D.qs.map((t, i) => ({ n: i + 1, t }))),
+      vocab: D.vocab.map(([w, d]) => ({ w, d })),
+      canFinish: isStop && !s.done[st], isDone: isStop && !!s.done[st],
+      finish: () => { const d = s.done.slice(); d[st] = true; set({ done: d, outcome: s.wk && s.wk.ch[st] != null ? st : null }); },
+    };
+    for (let i = 1; i <= N; i++) r['isA' + i] = st === i - 1;
+    // A1
+    r.a1Bars = POP.map((p, i) => ({ year: p[0], h: Math.max(3, p[1] / 33383 * 100) + '%', bg: s.y1 === i ? INK : '#6b8fb3', pick: () => set({ y1: i }) }));
+    r.a1Sel = { val: POP[s.y1][1] ? POP[s.y1][1].toLocaleString() : 'Farmland', note: POP[s.y1][0] + ': ' + POP[s.y1][2] };
+    // A2
+    r.a2 = s.gate
+      ? { btn: 'Close the canal gate', btnBg: '#c9a54e', btnFg: INK, status: '● RUNNING', statusC: '#4d7259', text: 'Water from the canal turns the wheel. The wheel turns every shaft, belt and machine in the mill.' }
+      : { btn: 'Open the canal gate', btnBg: INK, btnFg: PAPER, status: '■ STOPPED', statusC: '#a1543f', text: 'No water, no power. Every machine on every floor stops at the same moment.' };
+    r.toggleGate = () => set({ gate: !s.gate });
+    r.a2Modes = ['1790: Workshop', '1840: Factory'].map((l, i) => Object.assign({ label: l, pick: () => set({ m2: i }) }, this.sel(s.m2 === i, '#e8d9ae')));
+    r.a2Rows = SHOES.map((x) => ({ k: x[0], v: x[s.m2 + 1] }));
+    // A3
+    r.a3Bells = BELLS.map((b, i) => Object.assign({ time: b[0], short: b[1], pick: () => { this.markSeen('b', i); set({ b3: i }); } }, this.sel(s.b3 === i)));
+    const Bl = BELLS[s.b3];
+    r.a3 = { title: (Bl[0] === 'Sun.' ? '' : Bl[0] + ' ') + Bl[3], hours: Bl[4], text: Bl[5], rule: Bl[6], hasRule: !!Bl[6] };
+    // A4
+    const Lm = LOOMS[s.looms];
+    r.a4 = { n: s.looms, era: Lm[0], text: Lm[1], x: Lm[2], w: (s.looms / 4 * 80) + '%', sBtn: s.sound ? '■ Stop the sound' : '▶ Hear the weaving room', sBg: s.sound ? INK : '#5f8f96', sFg: s.sound ? PAPER : INK };
+    r.toggleSound = () => { if (s.sound) { this.stopSound(true); set({ sound: false }); } else { this.startSound(s.looms); set({ sound: true }); } };
+    r.setLooms = (e) => { const n = +e.target.value; set({ looms: n }); if (s.sound) this.startSound(n); };
+    // A5
+    r.a5Events = EVENTS.map((e, i) => Object.assign({ year: e[0], pick: () => set({ e4: i }) }, this.sel(s.e4 === i, s.rev4[i] ? '#cfe0d4' : PAPER)));
+    const E = EVENTS[s.e4];
+    r.a5 = { title: E[0] + ' · ' + E[1], text: E[2], outcome: E[3], result: E[4], outBg: E[5] };
+    r.a5Revealed = !!s.rev4[s.e4]; r.a5Hidden = !r.a5Revealed;
+    r.a5Reveal = () => { this.markSeen('r', s.e4); set({ rev4: Object.assign({}, s.rev4, { [s.e4]: true }) }); };
+    // A6
+    r.a6Bars = IMM.map((d, i) => ({ year: d[0], h: Math.max(3, d[1] / 114371 * 100) + '%', bg: s.b5 === i ? INK : '#8f7fae', pick: () => set({ b5: i }) }));
+    r.a6Sel = { val: IMM[s.b5][1].toLocaleString(), note: IMM[s.b5][0] + ': ' + IMM[s.b5][2] };
+    // A7
+    r.a7Steps = STEPS.map((x, i) => Object.assign({ n: i + 1, short: x[0], pick: () => set({ st7: i }) }, this.sel(s.st7 === i, i < s.st7 ? '#ead2bd' : PAPER)));
+    r.a7 = { title: (s.st7 + 1) + '. ' + STEPS[s.st7][1], text: STEPS[s.st7][2] };
+    return r;
+  }
+}
+</script>
+</body>
+</html>
